@@ -141,6 +141,7 @@ module.exports = function(grunt) {
 
   // TODO: setup Jenkins, find real env variable
   grunt.registerTask('test', [
+    'setup',
     'jshint',
     'clean',
     'assemble',

@@ -28,7 +28,7 @@ A more detailed process:
 - Disconnect any personal devices
 - Connect iOS devices
 - Install dependencies: ```npm install```
-- Run the setup script to check for pre-reqs: ```grunt setup``` or ```npm setup```
+- Run the setup script to check for pre-reqs: ```grunt setup```
 
 ## Execution
 - To execute the tests run ```grunt test``` or ```npm test```.
