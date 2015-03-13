@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         command: 'node_modules/.bin/appium-doctor'
       },
       webdriverManager: {
-        command: 'node_modules/grunt-protractor-runner/node_modules/.bin/webdriver-manager update'
+        command: 'node_modules/.bin/webdriver-manager update'
       },
       adbDevices: {
         command: 'adb devices'
