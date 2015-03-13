@@ -31,10 +31,10 @@ A more detailed process:
 - Run the setup script to check for pre-reqs: ```grunt setup``` or ```npm setup```
 
 ## Execution
-- To execute the tests you just need to run ```grunt```.
+- To execute the tests run ```grunt test``` or ```npm test```.
 - If the test is being run locally it will use your local Safari, Firefox and Chrome browsers and assumes that you have the correct devices connected by a USB hub (see the device list below).
 - If the tests are being run in CI the browser tests will be run in Sauce Labs. Device testing must be run manually at this time until a dedicated device testing machine is set up.
-- To manually run the Sauce Labs tests with your own Sauce credentials run ```SAUCE_USER=username SAUCE_ACCESS_KEY=key grunt sauce```
+- To manually run the Sauce Labs tests with your own Sauce credentials run ```SAUCE_USER=username SAUCE_ACCESS_KEY=key grunt test```
 
 ## Troubleshooting
 - Reconnect devices
