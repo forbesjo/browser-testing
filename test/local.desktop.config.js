@@ -1,3 +1,5 @@
+var HtmlReporter = require('protractor-html-screenshot-reporter');
+
 exports.config = {
 
   multiCapabilities: [{
@@ -30,5 +32,12 @@ exports.config = {
     {
       browserName: 'firefox'
     }
-  ]
+  ],
+
+  onPrepare: function() {
+    // Add a screenshot reporter and store screenshots to `/tmp/screnshots`:
+    jasmine.getEnv().addReporter(new HtmlReporter({
+      baseDirectory: 'test/screenshots'
+    }));
+  }
 };
