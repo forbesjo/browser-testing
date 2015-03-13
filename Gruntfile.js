@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         stdout: true
       },
       appium: {
-        command: 'node_modules/.bin/appium --port 4723',
+        command: 'node_modules/.bin/appium',
         options: {
           async: true,
           stdout: false,
@@ -46,17 +46,24 @@ module.exports = function(grunt) {
         }
       },
       appiumDoctor: {
-        command: 'node_modules/.bin/appium-doctor',
+        command: 'node_modules/.bin/appium-doctor'
       },
       webdriverManager: {
-        command: 'node_modules/grunt-protractor-runner/node_modules/.bin/webdriver-manager update',
+        command: 'node_modules/grunt-protractor-runner/node_modules/.bin/webdriver-manager update'
       },
       adbDevices: {
         command: 'adb devices'
+      },
+      proxyiPhone: {
+        command: 'node_modules/appium/bin/ios-webkit-debug-proxy-launcher.js -c 79431df8dc364454f4850ceacb447797bc313574:27753 -d',
+        options: {
+          async: true,
+          stdout: false,
+          failOnError: false
+        }
       }
     },
 
-    // TODO: duplicate code
     protractor: {
       options: {
         keepAlive: true,
@@ -66,36 +73,19 @@ module.exports = function(grunt) {
           specs: ['test/spec/player.test.js']
         }
       },
-
       localDesktop: {
         options: {
           configFile: 'test/local.desktop.config.js'
         }
       },
-
       localDevices: {
         options: {
-          configFile: 'test/local.devices.config.js',
-          args: {
-            // Device testing uses a running Appium instance,
-            // by default it starts on port 4723
-            // See https://github.com/angular/protractor/issues/361
-            seleniumAddress: 'http://' + externalIp.address + ':4723/wd/hub',
-            baseUrl: 'http://' + externalIp.address + ':8080/',
-            specs: ['test/spec/player.test.js']
-          }
+          configFile: 'test/local.devices.config.js'
         }
       },
-
       sauce: {
         options: {
-          configFile: 'test/sauce.config.js',
-          args: {
-            sauceUser: process.env.SAUCE_USERNAME,
-            sauceKey: process.env.SAUCE_ACCESS_KEY,
-            baseUrl: 'http://' + externalIp.address + ':8080/',
-            specs: ['test/spec/player.test.js']
-          }
+          configFile: 'test/sauce.config.js'
         }
       }
     },
@@ -147,6 +137,7 @@ module.exports = function(grunt) {
     'assemble',
     'shell:appium',
     'shell:adbDevices',
+    'shell:proxyiPhone',
     'connect', (process.env.JENKINS ? 'concurrent:ci' : 'concurrent:local'),
     'shell:appium:kill'
   ]);

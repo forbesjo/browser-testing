@@ -1,4 +1,7 @@
 exports.config = {
+  maxSessions: 1,
+
+  seleniumAddress: 'http://localhost:4723/wd/hub',
 
   multiCapabilities: [
     // // TODO: Setup these devices
@@ -31,13 +34,13 @@ exports.config = {
     //   deviceName: ''
     // }
 
-    {
-      browserName: 'chrome',
-      platformName: 'Android',
-      platformVersion: '5.0',
-      // deviceName: '10.1.11.209:5555' // MOBILE367 on BRIGHTCOVE WIFI
-      deviceName: 'ZX1G22CFRQ' // MOBILE367 by USB
-    }
+    // {
+    //   browserName: 'chrome',
+    //   platformName: 'Android',
+    //   platformVersion: '5.0',
+    //   // deviceName: '10.1.10.119:5555' // MOBILE281 on BRIGHTCOVE WIFI
+    //   deviceName: '06706cfb0063bfef' // MOBILE281 by USB
+    // },
 
     // , {
     //   browserName: 'Chrome',
@@ -53,15 +56,15 @@ exports.config = {
     //   deviceName: '10.1.13.41:5555' // MOBILE367 on BRIGHTCOVE WIFI
     // }
 
-    // , {
-    //   browserName: '',
-    //   platformName: 'iOS',
-    //   platformVersion: '8.1',
-    //   udid: '79431df8dc364454f4850ceacb447797bc313574',
-    //   deviceName: 'MOBILE152',
-    //   bundleId: 'com.brightcove.WebViewApp',
-    //   newCommandTimeout: 60
-    // }
+    {
+      browserName: '',
+      platformName: 'iOS',
+      platformVersion: '8.1',
+      udid: '79431df8dc364454f4850ceacb447797bc313574',
+      deviceName: 'MOBILE152',
+      bundleId: 'com.brightcove.WebViewApp',
+      newCommandTimeout: 60
+    }
   ],
 
   onPrepare: function() {
