@@ -36,13 +36,13 @@ A more detailed process:
 - If the tests are being run in CI the browser tests will be run in Sauce Labs. Device testing must be run manually at this time until a dedicated device testing machine is set up.
 - To manually run the Sauce Labs tests with your own Sauce credentials run ```SAUCE_USER=username SAUCE_ACCESS_KEY=key grunt sauce```
 
-### Troubleshooting
+## Troubleshooting
 - Reconnect devices
 - Restart devices
 - Check appium-doctor
 - Clear iOS device logs. (see [this SO question](http://stackoverflow.com/questions/8153098/unable-to-connect-iphone-3gsios-5-0-1-with-instruments-application/23561590#23561590))
 
-### Android Testing Over Wifi
+## Android Testing Over Wifi
 1. Connect device to computer via USB.
 2. Make sure device and computer are connected to the same Wi-Fi.
 3. Run this command to restart adb and make it work over tcpip:
@@ -63,7 +63,7 @@ The ```protractor``` task in the grunt file points to ```*.config.js``` files wh
 See [Appium capabilities](http://appium.io/slate/en/master/?javascript#appium-server-capabilities) and [webdriver capabilities](https://code.google.com/p/selenium/wiki/DesiredCapabilities) for the available options.
 See [Sauce Labs](https://docs.saucelabs.com/reference/test-configuration/) for additional capability fields such as tags, name and appiumVersion.
 
-### Device List
+## Device List
 - Android 4.0
 - Android 4.1
 - Android 4.2
