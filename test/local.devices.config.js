@@ -34,13 +34,14 @@ exports.config = {
     //   deviceName: ''
     // }
 
-    // {
-    //   browserName: 'chrome',
-    //   platformName: 'Android',
-    //   platformVersion: '5.0',
-    //   // deviceName: '10.1.10.119:5555' // MOBILE281 on BRIGHTCOVE WIFI
-    //   deviceName: '06706cfb0063bfef' // MOBILE281 by USB
-    // },
+    {
+      browserName: 'chrome',
+      platformName: 'Android',
+      platformVersion: '5.0',
+      // deviceName: '10.1.10.119:5555' // MOBILE281 on BRIGHTCOVE WIFI
+      deviceName: '06706cfb0063bfef', // MOBILE281 by USB
+      newCommandTimeout: 60
+    },
 
     // , {
     //   browserName: 'Chrome',
@@ -72,6 +73,8 @@ exports.config = {
       protractor = require('protractor'),
       wdBridge = require('wd-bridge')(protractor, wd);
     wdBridge.initFromProtractor(exports.config);
+
+    browser.ignoreSynchronization = true;
   }
 
 };

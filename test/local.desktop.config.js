@@ -38,5 +38,7 @@ exports.config = {
     jasmine.getEnv().addReporter(new HtmlReporter({
       baseDirectory: 'test/screenshots'
     }));
+
+    browser.ignoreSynchronization = true;
   }
 };

@@ -114,19 +114,25 @@ module.exports = function(grunt) {
 
   grunt.registerTask('setup', function() {
     var browserComponents = [
-        [grunt.file.isDir('/Applications/Google Chrome.app'), 'Chrome is installed'],
-        [grunt.file.isDir('/Applications/Firefox.app'), 'Firefox is installed'],
-        [grunt.file.isDir('/Applications/Safari.app'), 'Safari is installed'],
-        [grunt.file.isFile(process.env['HOME'] + '/Library/Safari/Extensions/WebDriver.safariextz'), 'SafariDriver extension is installed']
+        '/Applications/Google Chrome.app',
+        '/Applications/Firefox.app',
+        '/Applications/Safari.app',
+        process.env['HOME'] + '/Library/Safari/Extensions/WebDriver.safariextz'
       ],
-      i = 0;
+      i = 0,
+      browserComponent;
+
+    for (; i < browserComponents.length; i++) {
+      browserComponent = browserComponents[i];
+      if (grunt.file.exists(browserComponent)) {
+        grunt.log.ok(browserComponent + ' is present');
+      } else {
+        grunt.fail.warn(browserComponent + ' is NOT present');
+      }
+    }
 
     grunt.task.run('shell:appiumDoctor');
     grunt.task.run('shell:webdriverManager');
-
-    for (; i < browserComponents.length; i++) {
-      (browserComponents[i][0] ? grunt.log.ok : grunt.log.error)(browserComponents[i][1]);
-    }
   });
 
   // TODO: setup Jenkins, find real env variable
