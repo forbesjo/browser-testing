@@ -57,13 +57,37 @@ exports.config = {
     //   deviceName: '10.1.13.41:5555' // MOBILE367 on BRIGHTCOVE WIFI
     // }
 
+    // {
+    //   browserName: 'safari',
+    //   platformName: 'iOS',
+    //   platformVersion: '8.2',
+    //   // udid: '79431df8dc364454f4850ceacb447797bc313574',
+    //   // deviceName: 'MOBILE152',
+    //   deviceName: 'iPhone 4s',
+    //   nativeWebTap: true,
+    //   newCommandTimeout: 60
+    // },
+    // {
+    //   browserName: 'safari',
+    //   platformName: 'iOS',
+    //   platformVersion: '8.2',
+    //   // udid: '79431df8dc364454f4850ceacb447797bc313574',
+    //   // deviceName: 'MOBILE152',
+    //   deviceName: 'iPad Retina',
+    //   nativeWebTap: true,
+    //   newCommandTimeout: 60
+    // }
+    //
     {
+      app: process.env.PWD + '/SafariLauncher.zip',
       browserName: '',
+      // browserName: 'safari',
+      // bundleId: 'com.brightcove.SafariLauncher',
       platformName: 'iOS',
-      platformVersion: '8.1',
-      udid: '79431df8dc364454f4850ceacb447797bc313574',
       deviceName: 'MOBILE152',
-      bundleId: 'com.brightcove.WebViewApp',
+      udid: '79431df8dc364454f4850ceacb447797bc313574',
+      safariAllowPopups: false,
+      safariIgnoreFraudWarning: true,
       newCommandTimeout: 60
     }
   ],

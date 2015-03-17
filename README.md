@@ -19,8 +19,8 @@ A more detailed process:
 - Install [SafariDriver extension](http://selenium-release.storage.googleapis.com/2.45/SafariDriver.safariextz) in Safari
 - Disable any extensions/add-ons that may conflict with the automation (ex. Safari Restore).
 - Android devices are in developer mode (tap "Build Number" in settings 7 times)
-- iOS devices have developer options on
-- Pre-install web view app on iOS devices
+- iOS devices have UI automation on (Settings->Developer->Enable UI Automation)
+- iOS devices have Web Inspector options on (Settings->Safari->Advanced->Web Inspector)
 
 ## Test Session Setup
 - Find the devices in the list below

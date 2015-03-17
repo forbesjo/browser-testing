@@ -2,19 +2,7 @@ describe('Player', function() {
   var url = browser.baseUrl + 'player-test.html';
 
   beforeEach(function() {
-    browser.getCapabilities().then(function(cap) {
-      if (cap.caps_.platformName === 'iOS') {
-        wdBrowser
-          .contexts()
-          .then(function(contexts) {
-            // Switch from native to webView context
-            return wdBrowser.context(contexts[1]);
-          })
-          .get(url);
-      } else {
-        browser.driver.get(url);
-      }
-    });
+    browser.driver.get(url);
   });
 
   it('Page title contains "video.js"', function() {
