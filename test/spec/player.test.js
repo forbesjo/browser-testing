@@ -1,24 +1,35 @@
+var isElementPresentByCss = function(css) {
+  browser.wait(protractor.until.elementLocated(by.css(css))).then(function() {
+    expect(browser.isElementPresent(by.css(css))).toBe(true);
+  });
+};
+
 describe('Player', function() {
   var url = browser.baseUrl + 'player-test.html';
 
   beforeEach(function() {
-    browser.driver.get(url);
+    browser.get(url);
   });
 
   it('Page title contains "video.js"', function() {
-    expect(browser.driver.getTitle()).toEqual('video.js');
+    expect(browser.getTitle()).toEqual('video.js');
   });
 
   it('Test that clicking the play button works.', function() {
-    browser.driver.findElement(By.className('vjs-big-play-button')).click();
-    browser.driver.sleep(1000).then(function() {
-      expect(browser.driver.isElementPresent(By.className('vjs-playing'))).toBe(true);
-    });
+    browser.findElement(by.css('.vjs-big-play-button')).click();
+    isElementPresentByCss('.vjs-playing');
   });
 
   xit('Test that the media progresses as expected.', function() {});
 
-  xit('Test pause and resume works.', function() {});
+  it('Test pause and resume works.', function() {
+    browser.findElement(by.css('.vjs-big-play-button')).click();
+    isElementPresentByCss('.vjs-playing');
+    browser.findElement(by.css('.vjs-play-control')).click();
+    isElementPresentByCss('.vjs-paused');
+    browser.findElement(by.css('.vjs-play-control')).click();
+    isElementPresentByCss('.vjs-playing');
+  });
 
   xit('Test seeking (forwards and backwards) works.', function() {});
 
