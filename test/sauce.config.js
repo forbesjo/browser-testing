@@ -46,5 +46,9 @@ exports.config = {
   }, {
     browserName: 'firefox',
     version: '34'
-  }]
+  }],
+
+  onPrepare: function() {
+    browser.ignoreSynchronization = true;
+  }
 };

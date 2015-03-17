@@ -1,7 +1,7 @@
 var isElementPresentByCss = function(css) {
   var el = by.css(css);
-  browser.wait(protractor.until.elementLocated(el)).then(function() {
-    expect(browser.isElementPresent(el)).toBe(true);
+  return browser.wait(function() {
+    return browser.isElementPresent(el);
   });
 };
 
@@ -18,18 +18,20 @@ describe('Player', function() {
 
   it('Test that clicking the play button works.', function() {
     browser.findElement(by.css('.vjs-big-play-button')).click();
-    isElementPresentByCss('.vjs-playing');
+    expect(isElementPresentByCss('.vjs-playing')).toBe(true);
   });
 
   xit('Test that the media progresses as expected.', function() {});
 
   it('Test pause and resume works.', function() {
     browser.findElement(by.css('.vjs-big-play-button')).click();
-    isElementPresentByCss('.vjs-playing');
+    expect(isElementPresentByCss('.vjs-playing')).toBe(true);
+
     browser.findElement(by.css('.vjs-play-control')).click();
-    isElementPresentByCss('.vjs-paused');
+    expect(isElementPresentByCss('.vjs-paused')).toBe(true);
+
     browser.findElement(by.css('.vjs-play-control')).click();
-    isElementPresentByCss('.vjs-playing');
+    expect(isElementPresentByCss('.vjs-playing')).toBe(true);
   });
 
   xit('Test seeking (forwards and backwards) works.', function() {});
