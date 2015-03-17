@@ -1,6 +1,7 @@
 var isElementPresentByCss = function(css) {
-  browser.wait(protractor.until.elementLocated(by.css(css))).then(function() {
-    expect(browser.isElementPresent(by.css(css))).toBe(true);
+  var el = by.css(css);
+  browser.wait(protractor.until.elementLocated(el)).then(function() {
+    expect(browser.isElementPresent(el)).toBe(true);
   });
 };
 
