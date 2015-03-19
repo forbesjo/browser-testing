@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     'assemble',
     'copy',
     'appium',
-    'proxyMobile152',
+    'proxyDevice:79431df8dc364454f4850ceacb447797bc313574', //Mobile152
     'connect',
     (process.env.JENKINS ? 'concurrent:ci' : 'localSerial')
   ]);
