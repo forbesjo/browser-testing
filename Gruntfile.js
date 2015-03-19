@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('setup', ['checkBrowsers', 'shell:appiumDoctor', 'shell:webdriverManager']);
+  grunt.registerTask('setup', ['checkBrowsers', 'appiumDoctor', 'updateWebDriver']);
 
   grunt.registerTask('localSerial', [
     'protractor:localDesktop'
@@ -17,11 +17,9 @@ module.exports = function(grunt) {
     'clean',
     'assemble',
     'copy',
-    'shell:appium',
-    'shell:proxyMobile152',
+    'appium',
+    'proxyMobile152',
     'connect',
-    (process.env.JENKINS ? 'concurrent:ci' : 'localSerial'),
-    'shell:appium:kill',
-    'shell:proxyMobile152:kill'
+    (process.env.JENKINS ? 'concurrent:ci' : 'localSerial')
   ]);
 };
