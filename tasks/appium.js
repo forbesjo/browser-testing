@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     grunt.util.spawn({
       cmd: 'node_modules/.bin/appium',
       opts: {
-        stdio: 'inherit'
+        stdio: ['ignore', 'ignore', process.stderr]
       }
     }, function(error) {
       if (error) {
