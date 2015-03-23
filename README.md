@@ -35,7 +35,12 @@ A more detailed process:
 - To execute the tests run ```grunt test``` or ```npm test```.
 - If the test is being run locally it will use your local Safari, Firefox and Chrome browsers and assumes that you have the correct devices connected by a USB hub (see the device list below).
 - If the tests are being run in CI the browser tests will be run in Sauce Labs. Device testing must be run manually at this time until a dedicated device testing machine is set up.
-- To manually run the Sauce Labs tests with your own Sauce credentials run ```SAUCE_USER=username SAUCE_ACCESS_KEY=key grunt test```
+- To manually run the Sauce Labs tests with your own Sauce credentials run
+    ```
+    export SAUCE_USER=<username>
+    export SAUCE_ACCESS_KEY=<key>
+    grunt test
+    ```
 - After the test session is finished you can view the report under test/screenshots/report.html
 
 ## Troubleshooting
