@@ -15,6 +15,7 @@ A more detailed process:
 1. The e2e tests are run against the pages.
 
 ## Environment Requirements
+- See [this gist](https://gist.githubusercontent.com/forbesjo/597958a2b8736a3a4858/raw/setup.sh) for a quick install 
 - Follow these instructions: [Protractor Mobile Setup](https://github.com/angular/protractor/blob/master/docs/mobile-setup.md)
 - Install [SafariDriver extension](http://selenium-release.storage.googleapis.com/2.45/SafariDriver.safariextz) in Safari
 - Disable any extensions/add-ons that may conflict with the automation (ex. Safari Restore).
