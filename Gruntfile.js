@@ -7,7 +7,18 @@ module.exports = function(grunt) {
 
   grunt.registerTask('localSerial', [
     'protractor:localDesktop'
-    // , 'protractor:localDevices' // TODO: make devices stable
+    // ,'protractor:localDevices' // TODO: make devices stable
+  ]);
+
+  grunt.registerTask('sauce', [
+    // start sauce connect
+    'protractor:sauce'
+    //  close sauce connect
+    ]);
+
+  grunt.registerTask('ciSerial', [
+    'sauce'
+    // ,'protractor:localDevices' // TODO: make devices stable
   ]);
 
   grunt.registerTask('start-device-server', [

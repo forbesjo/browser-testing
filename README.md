@@ -15,7 +15,7 @@ A more detailed process:
 1. The e2e tests are run against the pages.
 
 ## Environment Requirements
-- See [this gist](https://gist.githubusercontent.com/forbesjo/597958a2b8736a3a4858/raw/setup.sh) for a quick install 
+- See [this gist](https://gist.githubusercontent.com/forbesjo/597958a2b8736a3a4858/raw/setup.sh) for a quick install
 - Follow these instructions: [Protractor Mobile Setup](https://github.com/angular/protractor/blob/master/docs/mobile-setup.md)
 - Install [SafariDriver extension](http://selenium-release.storage.googleapis.com/2.45/SafariDriver.safariextz) in Safari
 - Disable any extensions/add-ons that may conflict with the automation (ex. Safari Restore).
@@ -37,6 +37,8 @@ A more detailed process:
 - If the tests are being run in CI the browser tests will be run in Sauce Labs. Device testing must be run manually at this time until a dedicated device testing machine is set up.
 - To manually run the Sauce Labs tests with your own Sauce credentials run
     ```
+    sc -u <username> -k <key>
+
     SAUCE_USERNAME=<username> SAUCE_ACCESS_KEY=<key> grunt test
     ```
 - After the test session is finished you can view the report under test/screenshots/report.html
