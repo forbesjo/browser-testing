@@ -81,10 +81,5 @@ exports.config = {
 
   onPrepare: function() {
     browser.ignoreSynchronization = true;
-  },
-
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000
   }
 };

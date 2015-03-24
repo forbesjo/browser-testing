@@ -11,10 +11,8 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('sauce', [
-    // start sauce connect
     'protractor:sauce'
-    //  close sauce connect
-    ]);
+  ]);
 
   grunt.registerTask('ciSerial', [
     'sauce'
@@ -25,7 +23,7 @@ module.exports = function(grunt) {
     'appium',
     'proxyDevice:79431df8dc364454f4850ceacb447797bc313574' //Mobile152]
   ]);
-  grunt.registerTask('e2e-test', ['connect', (process.env.JENKINS ? 'concurrent:ci' : 'localSerial')]);
+  grunt.registerTask('e2e-test', ['connect', (process.env.TRAVIS ? 'ciSerial' : 'localSerial')]);
 
   // TODO: setup Jenkins, find real env variable
   grunt.registerTask('test', [
