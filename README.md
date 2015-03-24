@@ -38,7 +38,9 @@ A more detailed process:
 - To manually run the Sauce Labs tests with your own Sauce credentials run
     ```
     export SAUCE_USER=<username>
+    
     export SAUCE_ACCESS_KEY=<key>
+    
     grunt test
     ```
 - After the test session is finished you can view the report under test/screenshots/report.html
