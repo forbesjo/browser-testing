@@ -37,7 +37,7 @@ A more detailed process:
 - If the tests are being run in CI the browser tests will be run in Sauce Labs. Device testing must be run manually at this time until a dedicated device testing machine is set up.
 - To manually run the Sauce Labs tests with your own Sauce credentials run
     ```
-    SAUCE_USER=<username> SAUCE_ACCESS_KEY=<key> grunt test
+    SAUCE_USERNAME=<username> SAUCE_ACCESS_KEY=<key> grunt test
     ```
 - After the test session is finished you can view the report under test/screenshots/report.html
 
