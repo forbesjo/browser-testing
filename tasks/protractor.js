@@ -3,7 +3,6 @@ var externalIp = require('./externalIp.js');
 module.exports = function(grunt) {
   grunt.config('protractor', {
     options: {
-      keepAlive: true,
       noColor: false,
       args: {
         baseUrl: 'http://' + externalIp + ':8080/',
