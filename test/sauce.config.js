@@ -67,7 +67,8 @@ var browsers = [
     browserName: e.browserName,
     version: e.version,
     platform: e.platform,
-    name: e.browserName + '-' + e.version + '-' + e.platform
+    name: e.browserName + '-' + e.version + '-' + e.platform,
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
   };
 });
 
