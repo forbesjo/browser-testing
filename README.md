@@ -1,4 +1,6 @@
+
 # Automated Browser Testing
+[![Build Status](https://travis-ci.org/forbesjo/browser-testing.svg?branch=master)](https://travis-ci.org/forbesjo/browser-testing) [![Sauce Test Status](https://saucelabs.com/buildstatus/forbesjo-vjs)](https://saucelabs.com/u/forbesjo-vjs)
 
 ## Overview
 The planned workflow for browser automation is as follows:
