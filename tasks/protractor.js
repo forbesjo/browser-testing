@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     options: {
       noColor: false,
       args: {
-        baseUrl: 'http://' + externalIp + ':8080/',
+        baseUrl: 'http://localhost:8080/',
         specs: ['test/spec/player.test.js']
       }
     },
