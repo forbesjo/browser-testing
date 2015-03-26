@@ -1,6 +1,8 @@
 
 # Automated Browser Testing
-[![Build Status](https://travis-ci.org/forbesjo/browser-testing.svg?branch=master)](https://travis-ci.org/forbesjo/browser-testing) [![Sauce Test Status](https://saucelabs.com/buildstatus/forbesjo-vjs)](https://saucelabs.com/u/forbesjo-vjs)
+[![Build Status](https://travis-ci.org/forbesjo/browser-testing.svg?branch=master)](https://travis-ci.org/forbesjo/browser-testing)
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/forbesjo-vjs.svg)](https://saucelabs.com/u/forbesjo-vjs)
 
 ## Overview
 The planned workflow for browser automation is as follows:
@@ -84,4 +86,3 @@ See [Sauce Labs](https://docs.saucelabs.com/reference/test-configuration/) for a
 - iPad iOS 7.0
 - iPad iOS 7.1.2
 - iPad iOS 8.1
-
