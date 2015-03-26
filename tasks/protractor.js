@@ -6,15 +6,15 @@ module.exports = function(grunt) {
       noColor: false,
       args: {
         baseUrl: 'http://' + externalIp + ':8080/',
-        specs: ['test/spec/player.test.js']
+        specs: ['test/e2e/*_spec.js']
       }
     },
-    localDesktop: {
+    local: {
       options: {
         configFile: 'test/local.desktop.config.js'
       }
     },
-    localDevices: {
+    devices: {
       options: {
         configFile: 'test/local.devices.config.js'
       }

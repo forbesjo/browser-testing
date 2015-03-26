@@ -6,20 +6,19 @@ module.exports = function(grunt) {
   grunt.registerTask('testLocalDesktop', [
     'checkBrowsers',
     'updateWebDriver',
-    'protractor:localDesktop'
+    'protractor:local'
   ]);
 
   grunt.registerTask('testLocalDevices', [
     'appiumDoctor',
     'appium',
     'proxyDevice:79431df8dc364454f4850ceacb447797bc313574' //Mobile152
-    // 'protractor:localDevices'
+    // 'protractor:devices'
   ]);
 
   grunt.registerTask('test', function() {
     grunt.task.run([
       'jshint',
-      'clean',
       'copy',
       'connect',
       (process.env.TRAVIS ? 'protractor:sauce' : 'testLocalDesktop')

@@ -28,7 +28,10 @@ exports.config = {
     },
 
     {
-      browserName: 'firefox'
+      browserName: 'firefox',
+      loggingPrefs: {
+        browser: 'SEVERE'
+      }
     }
   ],
 

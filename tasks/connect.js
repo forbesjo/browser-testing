@@ -6,7 +6,6 @@ module.exports = function(grunt) {
       options: {
         hostname: externalIp,
         port: 8080,
-        base: 'test/tmp'
       }
     }
   });

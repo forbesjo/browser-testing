@@ -1,12 +1,12 @@
 module.exports = function(grunt) {
   grunt.config('concurrent', {
     local: [
-      'protractor:localDesktop',
-      'protractor:localDevices'
+      'protractor:local',
+      'protractor:devices'
     ],
     ci: [
       'protractor:sauce',
-      'protractor:localDevices'
+      'protractor:local'
     ]
   });
   grunt.loadNpmTasks('grunt-concurrent');

@@ -22,6 +22,7 @@
     "grunt-protractor-runner": "^1.2.1",
     "protractor": "^1.8.0",
     "protractor-html-screenshot-reporter": "0.0.19",
+    "video.js": "^4.12.5",
     "wd": "^0.3.11",
     "wd-bridge": "0.0.2"
   }

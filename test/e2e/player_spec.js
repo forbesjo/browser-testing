@@ -1,19 +1,29 @@
-var isElementPresentByCss = function(css) {
-  var el = by.css(css);
-  return browser.wait(function() {
-    return browser.isElementPresent(el);
-  });
-};
+var url = require('url'),
+  isElementPresentByCss = function(css) {
+    var el = by.css(css);
+    return browser.wait(function() {
+      return browser.isElementPresent(el);
+    });
+  };
 
 describe('Player', function() {
-  var url = browser.baseUrl + 'player-test.html';
+  var playerUrl = url.resolve(browser.baseUrl, 'test/page/player.html');
 
   beforeEach(function() {
-    browser.get(url);
+    browser.get(playerUrl);
   });
 
   it('Page title contains "video.js"', function() {
     expect(browser.getTitle()).toEqual('video.js');
+  });
+
+  it('There are no console errors', function() {
+    browser.manage().logs().get('browser').then(function(log) {
+      if (log.length > 0) {
+        console.log(require('util').inspect(log));
+      }
+      expect(log.length).toBe(0);
+    });
   });
 
   it('Test that clicking the play button works.', function() {
