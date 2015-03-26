@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   grunt.config('connect', {
     server: {
       options: {
-        hostname: 'localhost',
+        hostname: externalIp,
         port: 8080,
         base: 'test/tmp'
       }

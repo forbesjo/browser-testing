@@ -3,33 +3,26 @@ module.exports = function(grunt) {
 
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('setup', ['checkBrowsers', 'appiumDoctor', 'updateWebDriver']);
+  grunt.registerTask('testLocalDesktop', [
+    'checkBrowsers',
+    'updateWebDriver',
+    'protractor:localDesktop'
+  ]);
 
-  grunt.registerTask('start-device-server', [
+  grunt.registerTask('testLocalDevices', [
+    'appiumDoctor',
     'appium',
-    'proxyDevice:79431df8dc364454f4850ceacb447797bc313574' //Mobile152]
+    'proxyDevice:79431df8dc364454f4850ceacb447797bc313574' //Mobile152
+    // 'protractor:localDevices'
   ]);
 
   grunt.registerTask('test', function() {
-    if (process.env.TRAVIS) {
-      grunt.task.run([
-        'jshint',
-        'clean',
-        'copy',
-        'connect',
-        'protractor:sauce'
-      ]);
-    } else {
-      grunt.task.run([
-        'setup',
-        'jshint',
-        'clean',
-        'copy',
-        'connect',
-        'protractor:localDesktop'
-        // ,'start-device-server',
-        // 'protractor:localDevices'
-      ]);
-    }
+    grunt.task.run([
+      'jshint',
+      'clean',
+      'copy',
+      'connect',
+      (process.env.TRAVIS ? 'protractor:sauce' : 'testLocalDesktop')
+    ]);
   });
 };
