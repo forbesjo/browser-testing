@@ -17,7 +17,7 @@ describe('Player', function() {
     expect(browser.getTitle()).toEqual('video.js');
   });
 
-  it('There are no console errors', function() {
+  xit('There are no console errors', function() {
     browser.manage().logs().get('browser').then(function(log) {
       if (log.length > 0) {
         console.log(require('util').inspect(log));
