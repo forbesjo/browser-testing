@@ -2,8 +2,8 @@ module.exports = {
   options: {
     noColor: false,
     args: {
-      baseUrl: 'http://' + '<%= externalIp %>' + ':8080/',
-      specs: ['test/e2e/*_spec.js']
+      baseUrl: 'http://<%= externalIp %>:8080/',
+      specs: ['dist/specs.js']
     }
   },
   local: {

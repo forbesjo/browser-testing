@@ -71,6 +71,7 @@ module.exports = function(grunt) {
 
     'test': [
       'jshint',
+      'browserify',
       'connect',
       (process.env.TRAVIS ? 'protractor:sauce' : 'testLocalDesktop')
     ]
