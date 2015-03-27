@@ -20,11 +20,7 @@ exports.config = {
     },
 
     {
-      browserName: 'safari',
-      safariOptions: {
-        // Whether to make sure the session has no cookies, cache entries, local storage, or databases
-        args: ['cleanSession']
-      }
+      browserName: 'safari'
     },
 
     {
