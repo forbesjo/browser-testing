@@ -2,24 +2,36 @@ import url from 'url';
 import util from 'util';
 
 class Player {
-  isElementPresentByCss(css) {
+  hasCss(css) {
     return browser.wait(() => browser.isElementPresent(by.css(css)));
   }
 
+  clickElement(css) {
+    browser.findElement(by.css(css)).click();
+  }
+
   isPlaying() {
-    return this.isElementPresentByCss('.vjs-playing');
+    return this.hasCss('.vjs-playing');
   }
 
   isPaused() {
-    return this.isElementPresentByCss('.vjs-paused');
+    return this.hasCss('.vjs-paused');
+  }
+
+  isFullscreen() {
+    return this.hasCss('.vjs-fullscreen');
   }
 
   bigPlayButton() {
-    return browser.findElement(by.css('.vjs-big-play-button'));
+    this.clickElement('.vjs-big-play-button');
   }
 
   playControl() {
-    return browser.findElement(by.css('.vjs-play-control'));
+    this.clickElement('.vjs-play-control');
+  }
+
+  fullscreen() {
+    this.clickElement('.vjs-fullscreen-control');
   }
 }
 
@@ -46,20 +58,20 @@ describe('Player', () => {
   });
 
   it('Test that clicking the play button works.', () => {
-    player.bigPlayButton().click();
+    player.bigPlayButton();
     expect(player.isPlaying()).toBe(true);
   });
 
   xit('Test that the media progresses as expected.', () => {});
 
   it('Test pause and resume works.', () => {
-    player.bigPlayButton().click();
+    player.bigPlayButton();
     expect(player.isPlaying()).toBe(true);
 
-    player.playControl().click();
+    player.playControl();
     expect(player.isPaused()).toBe(true);
 
-    player.playControl().click();
+    player.playControl();
     expect(player.isPlaying()).toBe(true);
   });
 
