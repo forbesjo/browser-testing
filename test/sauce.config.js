@@ -65,7 +65,7 @@ exports.config = {
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
 
-  maxSessions: 3,
+  maxSessions: 1,
 
   multiCapabilities: browsers,
 
