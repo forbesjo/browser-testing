@@ -70,23 +70,16 @@ var browsers = [{
       platformVersion: '6.1',
       deviceName: 'iPad Simulator'
     }].map(function(e) {
-      return {
-        platformVersion: e.platformVersion,
-        deviceName: e.deviceName,
-        browserName: 'safari',
-        platformName: 'iOS',
-        nativeWebTap: true
-      };
+      e.browserName = 'safari';
+      e.platformName = 'iOS';
+      e.nativeWebTap = true;
+      return e;
     }))
   .map(function(e) {
-    return {
-      browserName: e.browserName,
-      version: e.version || '',
-      platform: e.platform || '',
-      name: e.browserName + '-' + e.version + '-' + e.platform,
-      build: process.env.TRAVIS_BUILD_NUMBER,
-      'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
-    };
+    e.name = e.browserName + '-' + e.version + '-' + e.platform;
+    e.build = process.env.TRAVIS_BUILD_NUMBER;
+    e['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
+    return e;
   });
 
 exports.config = {
