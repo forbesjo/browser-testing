@@ -70,13 +70,14 @@ var browsers = [{
       platformVersion: '6.1',
       deviceName: 'iPad Simulator'
     }].map(function(e) {
+      e.appiumVersion = '1.3.7';
       e.browserName = 'safari';
       e.platformName = 'iOS';
       e.nativeWebTap = true;
       return e;
     }))
   .map(function(e) {
-    e.name = e.browserName + '-' + e.version + '-' + e.platform;
+    e.name = e.browserName + '-' + (e.version || e.platformVersion) + '-' + (e.platform || e.deviceName);
     e.build = process.env.TRAVIS_BUILD_NUMBER;
     e['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
     return e;
