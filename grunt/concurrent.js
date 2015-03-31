@@ -5,6 +5,6 @@ module.exports = {
   ],
   ci: [
     'protractor:sauce',
-    'protractor:local'
+    'protractor:devices'
   ]
 };
