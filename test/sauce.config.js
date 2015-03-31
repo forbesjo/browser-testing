@@ -1,22 +1,22 @@
 var browsers = [{
     browserName: 'internet explorer',
-    platform: 'Windows 7',
+    platform: 'WIN7',
     version: '8'
   }, {
     browserName: 'internet explorer',
-    platform: 'Windows 7',
+    platform: 'WIN7',
     version: '9'
   }, {
     browserName: 'internet explorer',
-    platform: 'Windows 7',
+    platform: 'WIN7',
     version: '10'
   }, {
     browserName: 'internet explorer',
-    platform: 'Windows 7',
+    platform: 'WIN7',
     version: '11'
   }, {
     browserName: 'internet explorer',
-    platform: 'Windows 8.1',
+    platform: 'WIN8.1',
     version: '11'
   }, {
     browserName: 'chrome',
@@ -97,6 +97,7 @@ exports.config = {
 
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 180000
+    defaultTimeoutInterval: 180000,
+    isVerbose: true
   }
 };
