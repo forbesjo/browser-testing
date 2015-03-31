@@ -1,22 +1,22 @@
 var browsers = [{
     browserName: 'internet explorer',
-    platform: 'WIN7',
+    platform: 'Windows 7',
     version: '8'
   }, {
     browserName: 'internet explorer',
-    platform: 'WIN7',
+    platform: 'Windows 7',
     version: '9'
   }, {
     browserName: 'internet explorer',
-    platform: 'WIN7',
+    platform: 'Windows 7',
     version: '10'
   }, {
     browserName: 'internet explorer',
-    platform: 'WIN7',
+    platform: 'Windows 7',
     version: '11'
   }, {
     browserName: 'internet explorer',
-    platform: 'WIN8.1',
+    platform: 'Windows 8.1',
     version: '11'
   }, {
     browserName: 'chrome',
