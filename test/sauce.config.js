@@ -93,10 +93,5 @@ exports.config = {
 
   onPrepare: function() {
     browser.ignoreSynchronization = true;
-  },
-
-  jasmineNodeOpts: {
-    showColors: true,
-    isVerbose: true
   }
 };
