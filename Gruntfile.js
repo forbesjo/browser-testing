@@ -12,7 +12,8 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
   require('load-grunt-config')(grunt, {
     data: {
-      externalIp: externalIp
+      externalIp: externalIp,
+      webdriver_server: process.env.WEBDRIVER_SERVER || externalIp
     }
   });
 };

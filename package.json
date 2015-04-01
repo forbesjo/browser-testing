@@ -23,6 +23,7 @@
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-protractor-runner": "^1.2.1",
+    "grunt-protractor-webdriver": "^0.2.0",
     "grunt-sauce-connect-launcher": "^0.3.0",
     "load-grunt-config": "^0.16.0",
     "load-grunt-tasks": "^3.1.0",

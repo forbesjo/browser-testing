@@ -1,19 +1,28 @@
 module.exports = {
   options: {
-    noColor: false,
     args: {
       baseUrl: 'http://<%= externalIp %>:8080/',
       specs: ['dist/specs.js']
     }
   },
-  local: {
+  browsers: {
     options: {
-      configFile: 'test/local.desktop.config.js'
+      configFile: 'test/browsers.config.js',
+      args: {
+        seleniumAddress: 'http://<%= webdriver_server %>:4444/wd/hub',
+        baseUrl: 'http://<%= externalIp %>:8080/',
+        specs: ['dist/specs.js']
+      }
     }
   },
   devices: {
     options: {
-      configFile: 'test/local.devices.config.js'
+      configFile: 'test/devices.config.js',
+      args: {
+        seleniumAddress: 'http://<%= webdriver_server %>:4723/wd/hub',
+        baseUrl: 'http://<%= externalIp %>:8080/',
+        specs: ['dist/specs.js']
+      }
     }
   },
   sauce: {

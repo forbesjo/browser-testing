@@ -1,10 +1,6 @@
 module.exports = {
-  local: [
-    'protractor:local',
-    'protractor:devices'
-  ],
-  ci: [
-    'protractor:sauce',
+  all: [
+    'protractor:browsers',
     'protractor:devices'
   ]
 };

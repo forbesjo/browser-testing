@@ -54,32 +54,44 @@ module.exports = function(grunt) {
     }, this.async());
   });
 
+  grunt.registerTask('connectAndroid', function() {
+    grunt.util.spawn({
+      cmd: 'adb',
+      args: ['connect'],
+      opts: {
+        stdio: 'inherit'
+      }
+    }, this.async());
+  });
+
   return {
-    'testLocalDesktop': [
+    'setup-browsers': [
       'checkBrowsers',
       'updateWebDriver',
-      'protractor:local'
+      'protractor_webdriver:start'
     ],
 
-    'testLocalDevices': [
+    'setup-appium': [
       'appiumDoctor',
       'copy',
       'appium',
-      'proxyDevice:79431df8dc364454f4850ceacb447797bc313574' //Mobile152
-      // 'protractor:devices'
+      'proxyDevice:79431df8dc364454f4850ceacb447797bc313574', //Mobile152
+      'connectAndroid'
     ],
 
-    'sauce': [
-      'sauce_connect',
-      'protractor:sauce',
-      'sauce-connect-close'
-    ],
+    'setup-env': ['setup-browsers', 'setup-appium'],
+
+    'sauce': ['sauce_connect', 'protractor:sauce', 'sauce-connect-close'],
+
+    'local-browsers': ['setup-browsers', 'protractor:browsers'],
+
+    'local-devices': ['setup-appium', 'protractor:devices'],
 
     'test': [
       'jshint',
       'browserify',
       'connect',
-      (process.env.SAUCE_USERNAME ? 'sauce' : 'testLocalDesktop'),
+      (process.env.SAUCE_USERNAME ? 'sauce' : (process.env.WEBDRIVER_SERVER ? 'concurrent:all' : 'local-browsers'))
     ]
   };
 };

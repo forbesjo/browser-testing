@@ -1,5 +1,4 @@
 exports.config = {
-
   multiCapabilities: [{
       browserName: 'chrome',
       chromeOptions: {
