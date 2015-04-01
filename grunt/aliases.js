@@ -69,11 +69,17 @@ module.exports = function(grunt) {
       // 'protractor:devices'
     ],
 
+    'sauce': [
+      'sauce_connect',
+      'protractor:sauce',
+      'sauce-connect-close'
+    ],
+
     'test': [
       'jshint',
       'browserify',
       'connect',
-      (process.env.TRAVIS ? 'protractor:sauce' : 'testLocalDesktop')
+      (process.env.SAUCE_USERNAME ? 'sauce' : 'testLocalDesktop'),
     ]
   };
 };

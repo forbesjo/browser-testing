@@ -78,8 +78,8 @@ var browsers = [{
     }))
   .map(function(e) {
     e.name = e.browserName + '-' + (e.version || e.platformVersion) + '-' + (e.platform || e.deviceName);
-    e.build = process.env.TRAVIS_BUILD_NUMBER;
-    e['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
+    e.build = process.env.TRAVIS_BUILD_NUMBER || 'local';
+    e['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER || 'local';
     return e;
   });
 

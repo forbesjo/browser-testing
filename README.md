@@ -35,15 +35,10 @@ A more detailed process:
 - Check that the testing machine is running Appium, `ios_webkit_debug_proxy` for each of the iOS devices and webdriver-manager is running
 
 ## Execution
-- To execute the tests run ```grunt test``` or ```npm test```.
+- To execute the tests run `grunt test` or `npm test`.
 - If the test is being run locally it will use your local Safari, Firefox and Chrome browsers and assumes that you have the correct devices connected by a USB hub (see the device list below).
 - If the tests are being run in CI the browser tests will be run in Sauce Labs. Device testing must be run manually at this time until a dedicated device testing machine is set up.
-- To manually run the Sauce Labs tests with your own Sauce credentials run
-    ```
-    sc -u <username> -k <key>
-
-    SAUCE_USERNAME=<username> SAUCE_ACCESS_KEY=<key> grunt test
-    ```
+- To manually run the Sauce Labs tests with your own Sauce credentials run `SAUCE_USERNAME=<username> SAUCE_ACCESS_KEY=<key> grunt test`
 
 ## Troubleshooting
 - Reconnect devices
@@ -54,14 +49,11 @@ A more detailed process:
 ## Android Testing Over Wifi
 1. Connect device to computer via USB.
 2. Make sure device and computer are connected to the same Wi-Fi.
-3. Run this command to restart adb and make it work over tcpip:
-    ```adb tcpip 5555```
+3. Run `adb tcpip 5555` to restart adb and make it work over tcpip:
 4. Disconnect device
 5. Get IP address of your phone ("Settings" -> Wifi -> “Your connected network” -> Your IP address")
-6. Run this command to connect adb to your device over Wi-Fi using IP address:
-    ```adb connect <your phones ip address>```
-7. Verify, that adb works remotely:
-    ```adb devices```
+6. Run `adb connect <your phones ip address>` command to connect adb to your device over Wi-Fi using IP address:
+7. Verify, that adb works remotely with `adb devices`
 8. Run tests over Wi-Fi!
 
 _From [discuss.appium.io](https://discuss.appium.io/t/tutorial-how-to-run-tests-on-real-android-device-remotely-through-wi-fi/1135)_
