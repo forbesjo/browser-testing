@@ -25,7 +25,6 @@ A more detailed process:
     brew install caskroom/cask/brew-cask
     brew cask install google-chrome
     brew cask install firefox
-    brew cask install virtualbox
     brew cask install flash
 
     # install the SafariDriver extension
