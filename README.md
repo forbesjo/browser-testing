@@ -26,13 +26,13 @@ A more detailed process:
 - Android devices are in developer mode (tap "Build Number" in settings 7 times)
 - iOS devices have UI automation on (Settings->Developer->Enable UI Automation)
 - iOS devices have Web Inspector options on (Settings->Safari->Advanced->Web Inspector)
+- `npm install -g protractor`, `webdriver-manager update`
+- `npm install appium`, replace the appium provided SafariLauncher.zip with one using your provisioning profile
 
 ## Test Session Setup
-- Find the devices in the list below
-- Make sure your machine and devices are connected to BRIGHTCOVE Wifi
-- Disconnect any personal devices
-- Connect iOS devices
-- Install dependencies: ```npm install```
+- Check that the below devices are connected to the device testing machine
+- Make sure your machine is on the same network as the device testing machine
+- Check that the testing machine is running Appium, `ios_webkit_debug_proxy` for each of the iOS devices and webdriver-manager is running
 
 ## Execution
 - To execute the tests run ```grunt test``` or ```npm test```.
@@ -44,7 +44,6 @@ A more detailed process:
 
     SAUCE_USERNAME=<username> SAUCE_ACCESS_KEY=<key> grunt test
     ```
-- After the test session is finished you can view the report under test/screenshots/report.html
 
 ## Troubleshooting
 - Reconnect devices
