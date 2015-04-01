@@ -81,9 +81,20 @@ describe('Player', () => {
 
   xit('Test that emailing the video link and other social interactions pause the video and then let the user resume from paused point.', () => {});
 
-  xit('Test that going into and exiting full screen works', () => {});
+  xit('Test that going into and exiting full screen works', () => {
+    player.bigPlayButton();
+    player.fullscreen();
+    expect(player.isFullscreen()).toBe(true);
 
-  xit('Test pre-roll ads work', () => {});
+    player.fullscreen();
+    expect(player.isFullscreen()).toBe(false);
+  });
+
+  xit('Test pre-roll ads work', () => {
+    // player is configured with a pre-roll ad
+    player.bigPlayButton();
+    // expect(player.adsArePlaying()).toBe(true);
+  });
 
   xit('Test click-thrus work and you go to the advertiser’s landing page.', () => {});
 
@@ -91,13 +102,40 @@ describe('Player', () => {
 
   xit('Test control bar is available and actionable during ads.', () => {});
 
-  xit('Test you can pause ads.', () => {});
+  xit('Test you can pause ads.', () => {
+    // player is configured with a pre-roll ad
+    player.bigPlayButton();
+    // expect(player.adsArePlaying()).toBe(true);
 
-  xit('Test you can resume after pausing ads.', () => {});
+    player.playControl();
+    expect(player.isPaused()).toBe(true);
+  });
+
+  xit('Test you can resume after pausing ads.', () => {
+    // player is configured with a pre-roll ad
+    player.bigPlayButton();
+    // expect(player.adsArePlaying()).toBe(true);
+
+    player.playControl();
+    expect(player.isPaused()).toBe(true);
+
+    player.playControl();
+    expect(player.isPlaying()).toBe(true);
+  });
 
   xit('Test transition to video content is seamless (no audio/video issues, no skips, no long delays, no spinners over video content)', () => {});
 
-  xit('Verify you can enter and exit full screen while the ad is playing', () => {});
+  xit('Verify you can enter and exit full screen while the ad is playing', () => {
+    // player is configured with a pre-roll ad
+    player.bigPlayButton();
+    // expect(player.adsArePlaying()).toBe(true);
+
+    player.fullscreen();
+    expect(player.isFullscreen()).toBe(true);
+
+    player.fullscreen();
+    expect(player.isFullscreen()).toBe(false);
+  });
 
   xit('Verify you cannot scrub through an ad (except when the native player takes over)', () => {});
 
