@@ -57,7 +57,7 @@ module.exports = function(grunt) {
   grunt.registerTask('connectAndroid', function() {
     grunt.util.spawn({
       cmd: 'adb',
-      args: ['connect'],
+      args: ['devices'],
       opts: {
         stdio: 'inherit'
       }
