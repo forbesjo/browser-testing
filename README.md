@@ -20,7 +20,7 @@ A more detailed process:
 
 ## Environment Requirements
 - See [this gist](https://gist.githubusercontent.com/forbesjo/597958a2b8736a3a4858/raw/setup.sh) for a quick install
-    ```
+    `
     brew install git node android-sdk ideviceinstaller ios-webkit-debug-proxy
     brew install caskroom/cask/brew-cask
     brew cask install google-chrome
@@ -38,7 +38,7 @@ A more detailed process:
     source ~/.bash_profile
 
     android update sdk -u
-    ```
+    `
 - Disable any extensions/add-ons that may conflict with the automation (ex. Safari Restore).
 - Android devices are in developer mode (tap "Build Number" in settings 7 times)
 - iOS devices have UI automation on (Settings->Developer->Enable UI Automation)
