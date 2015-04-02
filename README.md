@@ -80,10 +80,22 @@ A more detailed process:
 _From [discuss.appium.io](https://discuss.appium.io/t/tutorial-how-to-run-tests-on-real-android-device-remotely-through-wi-fi/1135)_
 
 ## Capabilities
-The ```protractor``` task in the grunt file points to ```*.config.js``` files which define the different browser/device capabilities. These are things like browserName, deviceName, platformName, etc.
+The `protractor` task in the grunt file points to `*.config.js` files which define the different browser/device capabilities. These are things like browserName, deviceName, platformName, etc.
 
 See [Appium capabilities](http://appium.io/slate/en/master/?javascript#appium-server-capabilities) and [webdriver capabilities](https://code.google.com/p/selenium/wiki/DesiredCapabilities) for the available options.
 See [Sauce Labs](https://docs.saucelabs.com/reference/test-configuration/) for additional capability fields such as tags, name and appiumVersion.
+
+## Notes
+Test video is a 5 second clip with 5 frame of different color created using imagemagick and ffmpeg.
+
+    `
+    brew install ffmpeg --with-libvpx --with-libvorbis --with-fdk-aacc
+    brew install imagemagick
+
+    for i in `seq 0 4`; do convert -size 200x200 xc: +noise Random $i.png; done && \
+    ffmpeg -framerate 1 -i %d.png -c:v libx264 video.mp4 && \
+    ffmpeg -i video.mp4 -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis video.webm
+    `
 
 ## Device List
 - Android 4.0
