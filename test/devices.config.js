@@ -90,6 +90,7 @@ var devices = androidDevices;
 exports.config = {
   maxSessions: 1,
 
+  // WD Bridge requires Selenium Address to be defined here
   seleniumAddress: 'http://' + (process.env.WEBDRIVER_SERVER || 'localhost') + ':4723/wd/hub',
 
   multiCapabilities: devices,
@@ -102,5 +103,4 @@ exports.config = {
 
     browser.ignoreSynchronization = true;
   }
-
 };

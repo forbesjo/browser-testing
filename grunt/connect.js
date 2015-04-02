@@ -1,8 +1,8 @@
 module.exports = {
   server: {
     options: {
-      hostname: '<%= externalIp %>',
-      port: 8080,
+      hostname: '<%= page_hostname %>',
+      port: 8080
     }
   }
 };
