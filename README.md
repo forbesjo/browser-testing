@@ -7,56 +7,65 @@
 ## Overview
 The planned workflow for browser automation is as follows:
 
-- A test engineer will kick off the test suites manually while connected to a hub of devices or from a dedicated device testing machine. This will test as many devices as possible and the latest Mac desktop browsers.
-- A developer will not have to run these tests manually. Instead a CI build sends the testing jobs to Sauce Labs. This will cover both Mac and Windows desktop browsers with two versions back. This does not cover devices. The CI build could also trigger tests on a dedicated device testing machine.
-
-A more detailed process:
-
-1. The tests are stored in single-video-template.
-1. Several player configurations are built with a build task.
+1. The tests are stored in single-video-template or in a dedicated test repo.
+1. Jenkins will watch the required repos for changes and trigger the tests.
+1. Several player configurations are built.
 1. The player files are compiled into template pages.
 1. The pages are served.
-1. The e2e tests are run against the pages.
+1. The e2e tests are run against the pages on IE/Chrome/Firefox/Safari/Android/iOS.
+
+Supported browsers:
+- IE 8/9/10/11
+- Chrome/Firefox/Safari (two versions back using Sauce Labs, latest using local browsers)
+- Android 4.0
+- Android 4.1
+- Android 4.2
+- Android 4.3
+- Android 4.4
+- Android 5
+- iPhone iOS 7.0
+- iPhone iOS 7.1.2
+- iPhone iOS 8.1 - MOBILE152
+- iPad iOS 7.0
+- iPad iOS 7.1.2
+- iPad iOS 8.1
 
 ## Environment Requirements
+
 - See [this gist](https://gist.githubusercontent.com/forbesjo/597958a2b8736a3a4858/raw/setup.sh) for a quick install
-    `
-    brew install git node android-sdk ideviceinstaller ios-webkit-debug-proxy
-    brew install caskroom/cask/brew-cask
-    brew cask install google-chrome
-    brew cask install firefox
-    brew cask install flash
 
-    # install the SafariDriver extension
-    curl -O http://selenium-release.storage.googleapis.com/2.45/SafariDriver.safariextz
-    open SafariDriver.safariextz
+      brew install git node android-sdk ideviceinstaller ios-webkit-debug-proxy
+      brew install caskroom/cask/brew-cask
+      brew cask install google-chrome
+      brew cask install firefox
+      brew cask install flash
 
-    # set variables for Android
-    touch ~/.bash_profile
-    echo "export ANDROID_HOME=/usr/local/opt/android-sdk" >> ~/.bash_profile
-    echo 'export JAVA_HOME=\$(/usr/libexec/java_home)' >> ~/.bash_profile
-    source ~/.bash_profile
+      # install the SafariDriver extension
+      curl -O http://selenium-release.storage.googleapis.com/2.45/SafariDriver.safariextz
+      open SafariDriver.safariextz
 
-    android update sdk -u
-    `
+      # set variables for Android
+      touch ~/.bash_profile
+      echo "export ANDROID_HOME=/usr/local/opt/android-sdk" >> ~/.bash_profile
+      echo 'export JAVA_HOME=\$(/usr/libexec/java_home)' >> ~/.bash_profile
+      source ~/.bash_profile
+
+      android update sdk -u
+
+    _If you recently upgrade from Mavericks to Yosemite and you are getting Homebrew errors try `cd /usr/local/Library && git pull origin master`_
 - Disable any extensions/add-ons that may conflict with the automation (ex. Safari Restore).
 - Android devices are in developer mode (tap "Build Number" in settings 7 times)
 - iOS devices have UI automation on (Settings->Developer->Enable UI Automation)
 - iOS devices have Web Inspector options on (Settings->Safari->Advanced->Web Inspector)
-- `grunt updateWebdriver`
-- `grunt copy` then `node_modules/.bin/appium` to start Appium
-- `adb devices` to connect the Android devices
-- `node_modules/.bin/webdriver-manager start` to start the browser Selenium server
-- `ios_webkit_debug_proxy -c <UDID>:27753` running for each of the iOS devices
 
 ## Test Session Setup
 - Check that the below devices are connected to the device testing machine
 - Make sure your machine is on the same network as the device testing machine
-- Check that the testing machine is running Appium, `ios_webkit_debug_proxy` for each of the iOS devices and webdriver-manager
+- If using the CI testing machine check that it is running Appium, `ios_webkit_debug_proxy` for each of the iOS devices and webdriver-manager, otherwise grunt will automatically start everything for a local run
 
 ## Execution
 - To execute the tests run `grunt test` or `npm test`.
-- If the test is being run locally it will use your local Safari, Firefox and Chrome browsers and assumes that you have the correct devices connected by a USB hub (see the device list below).
+- If the test is being run locally it will use your local Safari, Firefox and Chrome browsers and assumes that you have the correct devices connected by a USB hub (see the device list above).
 - If the tests are being run in CI the browser tests will be run in Sauce Labs. Device testing must be run manually at this time until a dedicated device testing machine is set up.
 - To manually run the Sauce Labs tests with your own Sauce credentials run `SAUCE_USERNAME=<username> SAUCE_ACCESS_KEY=<key> grunt test`
 
@@ -88,25 +97,8 @@ See [Sauce Labs](https://docs.saucelabs.com/reference/test-configuration/) for a
 ## Notes
 Test video is a 5 second clip with 5 frame of different color created using imagemagick and ffmpeg.
 
-    `
-    brew install ffmpeg --with-libvpx --with-libvorbis --with-fdk-aacc
-    brew install imagemagick
+    brew install ffmpeg libvpx libvorbis fdk-aac imagemagick
 
-    for i in `seq 0 4`; do convert -size 200x200 xc: +noise Random $i.png; done && \
-    ffmpeg -framerate 1 -i %d.png -c:v libx264 video.mp4 && \
+    for i in `seq 0 4`; do convert -size 10x10 xc: +noise Random $i.png; done && \
+    ffmpeg -framerate 1 -i %d.png -c:v libx264 -vf fps=1 -pix_fmt yuv420p video.mp4 && \
     ffmpeg -i video.mp4 -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis video.webm
-    `
-
-## Device List
-- Android 4.0
-- Android 4.1
-- Android 4.2
-- Android 4.3
-- Android 4.4
-- Android 5
-- iPhone iOS 7.0
-- iPhone iOS 7.1.2
-- iPhone iOS 8.1 - MOBILE152
-- iPad iOS 7.0
-- iPad iOS 7.1.2
-- iPad iOS 8.1
