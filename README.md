@@ -99,6 +99,6 @@ Test video is a 5 second clip with 5 frame of different color created using imag
 
     brew install ffmpeg libvpx libvorbis fdk-aac imagemagick
 
-    for i in `seq 0 4`; do convert -size 10x10 xc: +noise Random $i.png; done && \
+    for i in `seq 0 4`; do convert -size 16x16 xc: +noise Random $i.png; done && \
     ffmpeg -framerate 1 -i %d.png -c:v libx264 -vf fps=1 -pix_fmt yuv420p video.mp4 && \
     ffmpeg -i video.mp4 -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis video.webm
