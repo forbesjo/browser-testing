@@ -30,13 +30,16 @@ exports.config = {
     }
   ],
 
+  framework: 'jasmine2',
+
   onPrepare: function() {
     browser.ignoreSynchronization = true;
+    var jasmineReporters = require('jasmine-reporters');
+    jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter('xmloutput', true, true));
   },
 
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 180000,
-    isVerbose: true
+    defaultTimeoutInterval: 180000
   }
 };
