@@ -1,6 +1,6 @@
 module.exports = {
   all: [
-    'local-browsers',
-    'local-devices'
+    'protractor:browsers',
+    'protractor:devices'
   ]
 };
