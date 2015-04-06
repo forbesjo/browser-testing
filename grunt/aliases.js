@@ -91,7 +91,7 @@ module.exports = function(grunt) {
       'jshint',
       'browserify',
       'connect',
-      (process.env.SAUCE_USERNAME ? 'sauce' : (process.env.WEBDRIVER_SERVER ? 'protractor:browsers' : 'local-browsers'))
+      (process.env.SAUCE_USERNAME ? 'sauce' : (process.env.WEBDRIVER_SERVER ? 'protractor:browsers' : (process.env.CI ?'concurrent:all': 'local-browsers')))
     ]
   };
 };
