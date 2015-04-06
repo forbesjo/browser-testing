@@ -1,7 +1,7 @@
 module.exports = {
   options: {
     args: {
-      baseUrl: 'http://<%= page_hostname %>:8080/',
+      baseUrl: 'http://<%= page_hostname %>:8000/',
       specs: ['dist/specs.js']
     }
   },
@@ -10,7 +10,7 @@ module.exports = {
       configFile: 'test/browsers.config.js',
       args: {
         seleniumAddress: 'http://<%= webdriver_server %>:4444/wd/hub',
-        baseUrl: 'http://<%= page_hostname %>:8080/',
+        baseUrl: 'http://<%= page_hostname %>:8000/',
         specs: ['dist/specs.js']
       }
     }
@@ -19,7 +19,7 @@ module.exports = {
     options: {
       configFile: 'test/devices.config.js',
       args: {
-        baseUrl: 'http://<%= page_hostname %>:8080/',
+        baseUrl: 'http://<%= page_hostname %>:8000/',
         specs: ['dist/specs.js']
       }
     }
