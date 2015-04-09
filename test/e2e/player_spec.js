@@ -3,7 +3,7 @@ import util from 'util';
 
 class Player {
   hasCss(css) {
-    return browser.wait(() => browser.isElementPresent(by.css(css)));
+    return browser.wait(() => browser.isElementPresent(by.css(css)), 5000);
   }
 
   clickElement(css) {
