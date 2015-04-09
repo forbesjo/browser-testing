@@ -82,14 +82,12 @@ describe('Player', () => {
   xit('Test that emailing the video link and other social interactions pause the video and then let the user resume from paused point.', () => {});
 
   xit('Test that going into and exiting full screen works', () => {
-    driver.manage().window().maximize();
-((JavascriptExecutor) driver).executeScript("window.focus();");
-    // player.bigPlayButton();
-    // player.fullscreen();
-    // expect(player.isFullscreen()).toBe(true);
+    
+    player.fullscreen();
+    expect(player.isFullscreen()).toBe(true);
 
-    // player.fullscreen();
-    // expect(player.isFullscreen()).toBe(false);
+    player.fullscreen();
+    expect(player.isFullscreen()).toBe(false);
   });
 
   xit('Test pre-roll ads work', () => {
