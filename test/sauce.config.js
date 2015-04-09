@@ -55,6 +55,7 @@ var browsers = [{
     e.name = e.browserName + '-' + e.version + '-' + e.platform;
     e.build = process.env.TRAVIS_BUILD_NUMBER || 'local';
     e['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER || 'local';
+    e.seleniumVersion = '2.45.0';
     return e;
   });
 
