@@ -53,7 +53,7 @@ var browsers = [{
   }]
   .map(function(e) {
     e.name = e.browserName + '-' + e.version + '-' + e.platform;
-    e.build = process.env.TRAVIS_BUILD_NUMBER || 'local';
+    e.build = process.env.TRAVIS_BUILD_NUMBER || process.env.SAUCE_USERNAME + '-local';
     e['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER || 'local';
     return e;
   });
