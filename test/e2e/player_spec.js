@@ -87,7 +87,7 @@ describe('Player', () => {
     player.bigPlayButton();
     expect(player.isPlaying()).toBe(true);
     browser.sleep(500);
-
+    
     player.fullscreen();
     expect(player.isFullscreen()).toBe(true);
     browser.sleep(500);
