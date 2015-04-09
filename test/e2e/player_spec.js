@@ -46,7 +46,8 @@ describe('Player', () => {
 
   it('Page title contains "video.js"', () => {
     expect(browser.getTitle()).toEqual('video.js');
-  });
+    
+      });
 
   xit('There are no console errors', () => {
     browser.manage().logs().get('browser').then(log => {
@@ -65,6 +66,7 @@ describe('Player', () => {
   xit('Test that the media progresses as expected.', () => {});
 
   it('Test pause and resume works.', () => {
+    
     player.bigPlayButton();
     expect(player.isPlaying()).toBe(true);
 
@@ -81,10 +83,14 @@ describe('Player', () => {
 
   xit('Test that emailing the video link and other social interactions pause the video and then let the user resume from paused point.', () => {});
 
-  xit('Test that going into and exiting full screen works', () => {
-    
+  it('Test that going into and exiting full screen works', () => {
+    player.bigPlayButton();
+    expect(player.isPlaying()).toBe(true);
+    browser.sleep(500);
+
     player.fullscreen();
     expect(player.isFullscreen()).toBe(true);
+    browser.sleep(500);
 
     player.fullscreen();
     expect(player.isFullscreen()).toBe(false);
