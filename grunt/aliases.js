@@ -87,11 +87,11 @@ module.exports = function(grunt) {
 
     'local-devices': ['setup-appium', 'protractor:devices'],
 
-    'test': [
+    'test': !process.env.TRAVIS_PULL_REQUEST ? [
       'jshint',
       'browserify',
       'connect',
       (process.env.SAUCE_USERNAME ? 'sauce' : (process.env.WEBDRIVER_SERVER ? 'protractor:browsers' : 'local-browsers'))
-    ]
+    ] : ['jshint']
   };
 };
