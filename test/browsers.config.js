@@ -32,6 +32,8 @@ exports.config = {
 
   framework: 'jasmine2',
 
+  maxSessions: 1,
+
   onPrepare: function() {
     browser.ignoreSynchronization = true;
   },
