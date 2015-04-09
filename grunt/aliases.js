@@ -87,7 +87,7 @@ module.exports = function(grunt) {
 
     'local-devices': ['setup-appium', 'protractor:devices'],
 
-    'test': !process.env.TRAVIS_PULL_REQUEST ? [
+    'test': (process.env.TRAVIS_PULL_REQUEST !== 'true') ? [
       'jshint',
       'browserify',
       'connect',
