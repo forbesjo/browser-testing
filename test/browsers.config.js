@@ -34,8 +34,6 @@ exports.config = {
 
   onPrepare: function() {
     browser.ignoreSynchronization = true;
-    var jasmineReporters = require('jasmine-reporters');
-    jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter());
   },
 
   jasmineNodeOpts: {
