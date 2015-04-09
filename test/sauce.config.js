@@ -55,7 +55,6 @@ var browsers = [{
     e.name = e.browserName + '-' + e.version + '-' + e.platform;
     e.build = process.env.TRAVIS_BUILD_NUMBER || 'local';
     e['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER || 'local';
-    e.seleniumVersion = '2.45.0';
     return e;
   });
 
@@ -66,6 +65,8 @@ exports.config = {
   maxSessions: 3,
 
   multiCapabilities: browsers,
+
+  maxDuration: 300,
 
   onPrepare: function() {
     browser.ignoreSynchronization = true;
