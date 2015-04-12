@@ -34,25 +34,27 @@ Supported browsers:
 
 - See [this gist](https://gist.githubusercontent.com/forbesjo/597958a2b8736a3a4858/raw/setup.sh) for a quick install
 
-      brew install git node android-sdk ideviceinstaller ios-webkit-debug-proxy
-      brew install caskroom/cask/brew-cask
-      brew cask install google-chrome
-      brew cask install firefox
-      brew cask install flash
-
-      # install the SafariDriver extension
-      curl -O http://selenium-release.storage.googleapis.com/2.45/SafariDriver.safariextz
-      open SafariDriver.safariextz
-
-      # set variables for Android
-      touch ~/.bash_profile
-      echo "export ANDROID_HOME=/usr/local/opt/android-sdk" >> ~/.bash_profile
-      echo 'export JAVA_HOME=\$(/usr/libexec/java_home)' >> ~/.bash_profile
-      source ~/.bash_profile
-
-      android update sdk -u
-
-    _If you recently upgrade from Mavericks to Yosemite and you are getting Homebrew errors try `cd /usr/local/Library && git pull origin master`_
+  ```
+  brew install git node android-sdk ideviceinstaller ios-webkit-debug-proxy
+  brew install caskroom/cask/brew-cask
+  brew cask install google-chrome
+  brew cask install firefox
+  brew cask install flash
+  
+  # install the SafariDriver extension
+  curl -O http://selenium-release.storage.googleapis.com/2.45/SafariDriver.safariextz
+  open SafariDriver.safariextz
+  
+  # set variables for Android
+  touch ~/.bash_profile
+  echo "export ANDROID_HOME=/usr/local/opt/android-sdk" >> ~/.bash_profile
+  echo 'export JAVA_HOME=\$(/usr/libexec/java_home)' >> ~/.bash_profile
+  source ~/.bash_profile
+  
+  android update sdk -u
+  ```
+  
+  _If you recently upgrade from Mavericks to Yosemite and you are getting Homebrew errors try `cd /usr/local/Library && git pull origin master`_
 - Disable any extensions/add-ons that may conflict with the automation (ex. Safari Restore).
 - Android devices are in developer mode (tap "Build Number" in settings 7 times)
 - iOS devices have UI automation on (Settings->Developer->Enable UI Automation)
