@@ -81,7 +81,7 @@ describe('Player', () => {
 
   xit('Test that emailing the video link and other social interactions pause the video and then let the user resume from paused point.', () => {});
 
-  it('Test that going into and exiting full screen works', () => {
+  xit('Test that going into and exiting full screen works', () => {
     player.bigPlayButton();
     expect(player.isPlaying()).toBe(true);
     browser.sleep(500);
