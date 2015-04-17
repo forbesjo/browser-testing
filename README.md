@@ -100,7 +100,7 @@ See [Sauce Labs](https://docs.saucelabs.com/reference/test-configuration/) for a
 ## Notes
 Test video is a 5 second clip with 5 frame of different color created using imagemagick and ffmpeg.
 
-    brew install ffmpeg libvpx libvorbis fdk-aac
+    brew install ffmpeg --with-libvorbis --with-libvpx --with-fdk-faac
     brew install imagemagick
 
     for i in `seq 0 4`; do convert -size 16x16 xc: +noise Random $i.png; done && \
