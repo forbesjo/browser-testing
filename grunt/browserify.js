@@ -4,7 +4,7 @@ module.exports = {
   },
   test: {
     files: {
-      'dist/specs.js': ['test/**/*_spec.js']
+      'dist/specs.js': ['test/**/*.test.js']
     }
   }
 };

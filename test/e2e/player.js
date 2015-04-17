@@ -1,6 +1,13 @@
 export class Player {
+  constructor(id) {
+    this.player = `videojs.players['${id}']`;
+  }
+
+  // UI
   hasCss(css) {
-    return browser.wait(() => browser.isElementPresent(by.css(css)), 5000);
+    return browser.wait(() => {
+      return browser.isElementPresent(by.css(css));
+    }, 5000);
   }
 
   clickElement(css) {
@@ -29,5 +36,22 @@ export class Player {
 
   fullscreen() {
     this.clickElement('.vjs-fullscreen-control');
+  }
+
+  // API
+  currentTime(time) {
+    browser.executeScript(`${this.player}.currentTime(arguments[0]);`, time);
+  }
+
+  getCurrentTime() {
+    return browser.executeScript(`return ${this.player}.currentTime();`);
+  }
+
+  play() {
+    browser.executeScript(`${this.player}.play();`);
+  }
+
+  error() {
+    return browser.executeScript(`${this.player}.error();`);
   }
 }

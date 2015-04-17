@@ -8,19 +8,20 @@ describe('Player', () => {
 
   beforeEach(() => {
     browser.get(playerUrl);
-    player = new Player();
+    player = new Player('vjs_video_3');
   });
 
   it('Page title contains "video.js"', () => {
     expect(browser.getTitle()).toEqual('video.js');
   });
 
-  xit('There are no console errors', () => {
-    browser.manage().logs().get('browser').then(log => {
-      if (log.length > 0) {
-        console.log(util.inspect(log));
+  it('There are no console errors', () => {
+    browser.manage().logs().get('browser').then(logs => {
+      let filteredLogs = logs.filter((log) => (!/favicon/.test(log.message)));
+      if (filteredLogs.length > 0) {
+        console.log(util.inspect(filteredLogs));
       }
-      expect(log.length).toBe(0);
+      expect(filteredLogs.length).toBe(0);
     });
   });
 
