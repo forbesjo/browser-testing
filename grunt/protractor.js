@@ -1,6 +1,5 @@
 module.exports = {
   options: {
-    keepAlive: true,
     args: {
       baseUrl: 'http://<%= page_hostname %>:8000/',
       specs: ['dist/specs.js']
