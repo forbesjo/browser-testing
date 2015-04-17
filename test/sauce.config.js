@@ -41,15 +41,24 @@ var browsers = [{
   }, {
     browserName: 'firefox',
     version: '36',
-    platform: 'OSX 10.10'
+    platform: 'OSX 10.10',
+    loggingPrefs: {
+      browser: 'SEVERE'
+    }
   }, {
     browserName: 'firefox',
     version: '35',
-    platform: 'OSX 10.10'
+    platform: 'OSX 10.10',
+    loggingPrefs: {
+      browser: 'SEVERE'
+    }
   }, {
     browserName: 'firefox',
     version: '34',
-    platform: 'OSX 10.10'
+    platform: 'OSX 10.10',
+    loggingPrefs: {
+      browser: 'SEVERE'
+    }
   }]
   .map(function(e) {
     e.name = e.browserName + '-' + e.version + '-' + e.platform;
