@@ -57,31 +57,28 @@ var androidDevices = [
   // {
   //   bcName: 'MOBILE323',
   //   deviceName: '0793a6d0',
-  //   version: '5.0.1'
+  //   platformVersion: '5.0.1'
   // }
   //
   // // Works
   {
     bcName: 'MOBILE335',
     deviceName: '320426a40df911a9',
-    version: '4.4'
+    platformVersion: '4.4'
   }
 
   // // Works
   // {
   //   bcName: 'MOBILE181',
   //   deviceName: '4df712f000d1cf81',
-  //   version: '4.4.2'
+  //   platformVersion: '4.4.2'
   // }
 
 ].map(function(e) {
-  return {
-    browserName: 'chrome',
-    platformName: 'android',
-    platformVersion: e.version,
-    deviceName: e.deviceName,
-    newCommandTimeout: 60
-  };
+  e.browserName = 'chrome';
+  e.platformName = 'android';
+  e.newCommandTimeout = 60;
+  return e;
 });
 
 // var devices = iosDevices.concat(androidDevices);

@@ -1,4 +1,4 @@
-exports.config = {
+var browsersConfig = {
   multiCapabilities: [{
       browserName: 'chrome',
       chromeOptions: {
@@ -32,8 +32,6 @@ exports.config = {
 
   framework: 'jasmine2',
 
-  maxSessions: 1,
-
   onPrepare: function() {
     browser.ignoreSynchronization = true;
   },
@@ -43,3 +41,9 @@ exports.config = {
     defaultTimeoutInterval: 180000
   }
 };
+
+if (process.env.WEBDRIVER_SERVER) {
+  browsersConfig.seleniumAddress = 'http://' + process.env.WEBDRIVER_SERVER + ':4444/wd/hub';
+}
+
+exports.config = browsersConfig;

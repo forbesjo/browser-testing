@@ -40,20 +40,20 @@ Supported browsers:
   brew cask install google-chrome
   brew cask install firefox
   brew cask install flash
-  
+
   # install the SafariDriver extension
   curl -O http://selenium-release.storage.googleapis.com/2.45/SafariDriver.safariextz
   open SafariDriver.safariextz
-  
+
   # set variables for Android
   touch ~/.bash_profile
   echo "export ANDROID_HOME=/usr/local/opt/android-sdk" >> ~/.bash_profile
   echo 'export JAVA_HOME=\$(/usr/libexec/java_home)' >> ~/.bash_profile
   source ~/.bash_profile
-  
+
   android update sdk -u
   ```
-  
+
   _If you recently upgrade from Mavericks to Yosemite and you are getting Homebrew errors try `cd /usr/local/Library && git pull origin master`_
 - Disable any extensions/add-ons that may conflict with the automation (ex. Safari Restore).
 - Android devices are in developer mode (tap "Build Number" in settings 7 times)
@@ -100,7 +100,8 @@ See [Sauce Labs](https://docs.saucelabs.com/reference/test-configuration/) for a
 ## Notes
 Test video is a 5 second clip with 5 frame of different color created using imagemagick and ffmpeg.
 
-    brew install ffmpeg libvpx libvorbis fdk-aac imagemagick
+    brew install ffmpeg libvpx libvorbis fdk-aac
+    brew install imagemagick
 
     for i in `seq 0 4`; do convert -size 16x16 xc: +noise Random $i.png; done && \
     ffmpeg -framerate 1 -i %d.png -c:v libx264 -vf fps=1 -pix_fmt yuv420p video.mp4 && \

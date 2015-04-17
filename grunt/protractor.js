@@ -7,21 +7,12 @@ module.exports = {
   },
   browsers: {
     options: {
-      configFile: 'test/browsers.config.js',
-      args: {
-        seleniumAddress: 'http://<%= webdriver_server %>:4444/wd/hub',
-        baseUrl: 'http://<%= page_hostname %>:8000/',
-        specs: ['dist/specs.js']
-      }
+      configFile: 'test/browsers.config.js'
     }
   },
   devices: {
     options: {
-      configFile: 'test/devices.config.js',
-      args: {
-        baseUrl: 'http://<%= page_hostname %>:8000/',
-        specs: ['dist/specs.js']
-      }
+      configFile: 'test/devices.config.js'
     }
   },
   sauce: {

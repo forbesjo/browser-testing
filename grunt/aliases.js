@@ -1,24 +1,12 @@
+require('shelljs/global');
+
 module.exports = function(grunt) {
   grunt.registerTask('appium', function() {
-    grunt.util.spawn({
-      cmd: 'node_modules/.bin/appium',
-      opts: {
-        stdio: ['ignore', 'ignore', process.stderr]
-      }
-    }, function(error) {
-      if (error) {
-        grunt.log.ok('Appium is already running...');
-      }
-    });
+    exec('node_modules/.bin/appium');
   });
 
   grunt.registerTask('appiumDoctor', function() {
-    grunt.util.spawn({
-      cmd: 'node_modules/.bin/appium-doctor',
-      opts: {
-        stdio: 'inherit'
-      }
-    }, this.async());
+    exec('node_modules/.bin/appium-doctor');
   });
 
   grunt.registerTask('checkBrowsers', function() {
@@ -35,42 +23,18 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('proxyDevice', function(udid) {
-    grunt.util.spawn({
-      cmd: 'node_modules/appium/bin/ios-webkit-debug-proxy-launcher.js',
-      args: ['-c ' + udid + ':27753'],
-      opts: {
-        stdio: 'inherit'
-      }
-    });
+    exec('node_modules/appium/bin/ios-webkit-debug-proxy-launcher.js -c ' + udid + ':27753');
   });
 
   grunt.registerTask('updateWebDriver', function() {
-    grunt.util.spawn({
-      cmd: 'node_modules/.bin/webdriver-manager',
-      args: ['update'],
-      opts: {
-        stdio: 'inherit'
-      }
-    }, this.async());
+    exec('node_modules/.bin/webdriver-manager update');
   });
 
   grunt.registerTask('connectAndroid', function() {
-    grunt.util.spawn({
-      cmd: 'adb',
-      args: ['devices'],
-      opts: {
-        stdio: 'inherit'
-      }
-    }, this.async());
+    exec('adb devices');
   });
 
   return {
-    'setup-browsers': [
-      'checkBrowsers',
-      'updateWebDriver',
-      'protractor_webdriver:start'
-    ],
-
     'setup-appium': [
       'appiumDoctor',
       'copy',
@@ -83,15 +47,21 @@ module.exports = function(grunt) {
 
     'sauce': ['sauce_connect', 'protractor:sauce', 'sauce-connect-close'],
 
-    'local-browsers': ['setup-browsers', 'protractor:browsers'],
+    'local-browsers': ['checkBrowsers', 'updateWebDriver', 'protractor:browsers'],
 
     'local-devices': ['setup-appium', 'protractor:devices'],
 
-    'test': (process.env.TRAVIS_PULL_REQUEST !== 'true') ? [
-      'jshint',
-      'browserify',
-      'connect',
-      (process.env.SAUCE_USERNAME ? 'sauce' : (process.env.WEBDRIVER_SERVER ? 'protractor:browsers' : 'local-browsers'))
-    ] : ['jshint']
+    'test': (process.env.TRAVIS_PULL_REQUEST !== 'true') ?
+      [
+        'jshint',
+        'browserify',
+        'connect',
+        (process.env.SAUCE_USERNAME ?
+          'sauce' :
+          (process.env.WEBDRIVER_SERVER ?
+            'protractor:browsers' :
+            'local-browsers'))
+      ] :
+      ['jshint']
   };
 };
