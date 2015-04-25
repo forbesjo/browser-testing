@@ -77,13 +77,14 @@ exports.config = {
 
   maxDuration: 300,
 
+  framework: 'jasmine2',
+
   onPrepare: function() {
     browser.ignoreSynchronization = true;
   },
 
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 180000,
-    isVerbose: true
+    defaultTimeoutInterval: 60000
   }
 };

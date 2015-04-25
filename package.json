@@ -22,7 +22,7 @@
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-protractor-runner": "^2.0.0",
-    "grunt-sauce-connect-launcher": "^0.3.0",
+    "grunt-sauce-connect-launcher": "git+ssh://git@github.com:forbesjo/grunt-sauce-connect-launcher.git#update",
     "load-grunt-config": "^0.16.0",
     "load-grunt-tasks": "^3.1.0",
     "protractor": "^2.0.0",

@@ -8,8 +8,7 @@ describe('Player by API', () => {
 
   beforeEach(() => {
     browser.get(playerUrl);
-    player = new Player('vjs_video_3');
-    browser.sleep(1000); //TODO: wait for player to be ready
+    player = new Player();
   });
 
   it('should play', () => {
@@ -18,7 +17,7 @@ describe('Player by API', () => {
   });
 
   it('should set current time', () => {
-    player.currentTime(3);
+    player.setCurrentTime(3);
     player.getCurrentTime()
       .then((r) => expect(r).toBe(3));
   });

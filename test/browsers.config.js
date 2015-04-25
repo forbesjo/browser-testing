@@ -30,15 +30,14 @@ var browsersConfig = {
     }
   ],
 
-  framework: 'jasmine2',
-
   onPrepare: function() {
     browser.ignoreSynchronization = true;
   },
 
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 180000
+    defaultTimeoutInterval: 60000,
+    isVerbose: true
   }
 };
 

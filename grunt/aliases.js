@@ -45,23 +45,30 @@ module.exports = function(grunt) {
 
     'setup-env': ['setup-browsers', 'setup-appium'],
 
-    'sauce': ['sauce_connect', 'protractor:sauce', 'sauce-connect-close'],
+    'test-setup': [
+      'jshint',
+      'browserify',
+      'connect'
+    ],
+
+    'sauce': ['test-setup', 'sauce_connect', 'protractor:sauce', 'sauce-connect-close'],
 
     'local-browsers': ['checkBrowsers', 'updateWebDriver', 'protractor:browsers'],
 
     'local-devices': ['setup-appium', 'protractor:devices'],
 
-    'test': (process.env.TRAVIS_PULL_REQUEST !== 'true') ?
-      [
-        'jshint',
-        'browserify',
-        'connect',
-        (process.env.SAUCE_USERNAME ?
-          'sauce' :
-          (process.env.WEBDRIVER_SERVER ?
-            'protractor:browsers' :
-            'local-browsers'))
-      ] :
-      ['jshint']
+    'remote' : ['test-setup', 'protractor:browsers'],
+
+    'local': [
+      'test-setup',
+      'local-browsers'
+        // , 'local-devices'
+    ],
+
+    'test-picker': (process.env.SAUCE_USERNAME && 'sauce') || (process.env.WEBDRIVER_SERVER && 'remote') || 'local',
+
+    'test': process.env.TRAVIS_PULL_REQUEST !== 'true' ? 'test-picker' : 'jshint',
+
+    'default': 'test'
   };
 };

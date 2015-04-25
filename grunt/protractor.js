@@ -17,7 +17,7 @@ module.exports = {
   },
   sauce: {
     options: {
-      configFile: 'test/sauce.config.js'
+      configFile: 'test/saucelabs.config.js'
     }
   }
 };
