@@ -1,7 +1,7 @@
 module.exports = {
   options: {
     args: {
-      baseUrl: 'http://<%= page_hostname %>:8000/',
+      baseUrl: 'http://<%= page_hostname %>:' + (grunt.option('port') || 8080) + '/',
       specs: ['dist/specs.js']
     }
   },
