@@ -7,8 +7,7 @@ describe('Player by API', () => {
   let player;
 
   beforeEach(() => {
-    browser.get(playerUrl);
-    player = new Player();
+    player = new Player(playerUrl);
   });
 
   it('should play', () => {
@@ -26,4 +25,15 @@ describe('Player by API', () => {
     expect(player.error()).toBe(null);
   });
 
+  it('should seek (forwards and backwards)', () => {
+    // player.clickBigPlayButton();
+    // player.clickPlayControl();
+    player.setCurrentTime(3);
+    player.getCurrentTime()
+      .then((r) => expect(r).toBe(3));
+
+    player.setCurrentTime(2);
+    player.getCurrentTime()
+      .then((r) => expect(r).toBe(2));
+  });
 });

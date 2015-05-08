@@ -1,9 +1,25 @@
-let timeout = 5000;
+const timeout = 5000;
 
 export class Player {
-  constructor() {
-    this.hasCss('.ready');
-    this.hasCss('.loadstart');
+  constructor(url) {
+    browser.get(url);
+    browser.executeScript(`
+      playerStatus = document.createElement('div');
+      player = videojs(document.querySelectorAll('.video-js')[0]);
+      playerStatus.id = 'player-status';
+      document.body.appendChild(playerStatus);
+      player.ready(function() {
+        playerStatus.classList.add('ready');
+      });
+    `);
+
+    expect(this.hasCss('.ready')).toBe(true);
+    if (!browser.isElementPresent(by.css('.video-js'))) {
+      jasmine.getEnv().bailFast();
+    }
+
+    // Disable control bar autohide
+    browser.executeScript(`player.options().inactivityTimeout = 0;`);
   }
 
   // UI
@@ -35,9 +51,15 @@ export class Player {
   }
 
   isFullscreen() {
-    // Wait until fullscreen animation completes
-    browser.sleep(1000);
-    return this.hasCss('.vjs-fullscreen');
+    browser.executeScript(`player.one('fullscreenchange', function(){
+      playerStatus.classList.add('isFullscreen');
+    });`);
+
+    if (this.hasCss('.isFullscreen')) {
+      browser.executeScript(`playerStatus.classList.remove('isFullscreen');`);
+      return this.hasCss('.vjs-fullscreen');
+    }
+    return false;
   }
 
   clickBigPlayButton() {
@@ -72,18 +94,4 @@ export class Player {
   error() {
     return browser.executeScript(`return player.error();`);
   }
-
-  // playIOS(){
-  //   driver
-  //     .contexts() // Cannot tap on a physical device webView
-  //     .then((contexts) => {
-  //       return driver.context(contexts[0]);
-  //     })
-  //     .elementByClassName('UIAWebView')
-  //     .click()
-  //     .contexts()
-  //     .then((contexts) => {
-  //       return driver.context(contexts[1]);
-  //     });
-  // }
 }

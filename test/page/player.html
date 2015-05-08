@@ -12,24 +12,11 @@
 
 <body>
   <video id="vjs_video_3" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360" data-setup='{"example_option":true}'>
-    <source src="video.mp4" type='video/mp4' />
-    <source src="video.webm" type='video/webm' />
+    <source src="https://github.com/forbesjo/browser-testing/raw/gh-pages/video.mp4" type='video/mp4' />
+    <source src="https://github.com/forbesjo/browser-testing/raw/gh-pages/video.webm" type='video/webm' />
     <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
     </p>
   </video>
-
-<script>
-  var playerStatus = document.createElement('div');
-  playerStatus.id = 'player-status';
-  document.body.appendChild(playerStatus);
-  var player = videojs(document.querySelectorAll('.video-js')[0]);
-  player.ready(function(){
-    playerStatus.classList.add('ready');
-  });
-  player.on('loadstart',function(){
-    playerStatus.classList.add('loadstart');
-  });
-</script>
 </body>
 
 </html>

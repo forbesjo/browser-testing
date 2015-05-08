@@ -7,16 +7,11 @@ describe('Player', () => {
   let player;
 
   beforeEach(() => {
-    browser.get(playerUrl);
-    player = new Player();
+    player = new Player(playerUrl);
   });
 
   it('page title should contain "video.js"', () => {
     expect(browser.getTitle()).toEqual('video.js');
-  });
-
-  it('page should contain vjs div', () => {
-    expect(browser.isElementPresent(by.css('.video-js'))).toBe(true);
   });
 
   it('should have no console errors', () => {
@@ -41,19 +36,11 @@ describe('Player', () => {
     player.clickPlayControl();
     expect(player.isPaused()).toBe(true);
 
+    // reset to beginning, the video may have finished
+    // at the last isPlaying()
+    player.setCurrentTime(0);
+
     player.clickPlayControl();
     expect(player.isPlaying()).toBe(true);
   });
-
-  xit('should enter and exit full screen', () => {
-    player.clickBigPlayButton();
-    expect(player.isPlaying()).toBe(true);
-
-    player.clickFullscreen();
-    expect(player.isFullscreen()).toBe(true);
-
-    player.clickFullscreen();
-    expect(player.isFullscreen()).toBe(false);
-  });
-
 });
