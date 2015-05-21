@@ -1,5 +1,5 @@
 var browsersConfig = {
-  maxSessions: 1,
+  // maxSessions: 1,
 
   multiCapabilities: [{
     browserName: 'chrome',

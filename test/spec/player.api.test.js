@@ -16,9 +16,9 @@ describe('Player by API', () => {
   });
 
   it('should set current time', () => {
-    player.setCurrentTime(3);
-    player.getCurrentTime()
-      .then((r) => expect(r).toBe(3));
+    player.currentTime(3);
+    player.currentTime()
+      .then(r => expect(r).toBe(3));
   });
 
   it('should have no player errors', () => {
@@ -26,14 +26,12 @@ describe('Player by API', () => {
   });
 
   it('should seek (forwards and backwards)', () => {
-    // player.clickBigPlayButton();
-    // player.clickPlayControl();
-    player.setCurrentTime(3);
-    player.getCurrentTime()
-      .then((r) => expect(r).toBe(3));
+    player.currentTime(3);
+    player.currentTime()
+      .then(r => expect(r).toBe(3));
 
-    player.setCurrentTime(2);
-    player.getCurrentTime()
-      .then((r) => expect(r).toBe(2));
+    player.currentTime(2);
+    player.currentTime()
+      .then(r => expect(r).toBe(2));
   });
 });

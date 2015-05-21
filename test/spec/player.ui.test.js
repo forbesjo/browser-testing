@@ -10,13 +10,9 @@ describe('Player', () => {
     player = new Player(playerUrl);
   });
 
-  it('page title should contain "video.js"', () => {
-    expect(browser.getTitle()).toEqual('video.js');
-  });
-
-  it('should have no console errors', () => {
+  xit('should have no console errors', () => {
     browser.manage().logs().get('browser').then(logs => {
-      let filteredLogs = logs.filter((log) => (!/favicon/.test(log.message)));
+      let filteredLogs = logs.filter(log => !/favicon/.test(log.message));
       if (filteredLogs.length > 0) {
         console.log(util.inspect(filteredLogs));
       }
@@ -34,11 +30,11 @@ describe('Player', () => {
     expect(player.isPlaying()).toBe(true);
 
     player.clickPlayControl();
-    expect(player.isPaused()).toBe(true);
+    expect(player.paused()).toBe(true);
 
     // reset to beginning, the video may have finished
     // at the last isPlaying()
-    player.setCurrentTime(0);
+    player.currentTime(0);
 
     player.clickPlayControl();
     expect(player.isPlaying()).toBe(true);

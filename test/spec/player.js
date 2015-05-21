@@ -1,4 +1,4 @@
-const timeout = 5000;
+const timeout = 1000;
 
 export class Player {
   constructor(url) {
@@ -13,8 +13,7 @@ export class Player {
       });
     `);
 
-    expect(this.hasCss('.ready')).toBe(true);
-    if (!browser.isElementPresent(by.css('.video-js'))) {
+    if (!element(by.css('.video-js')).isPresent()) {
       jasmine.getEnv().bailFast();
     }
 
@@ -25,29 +24,36 @@ export class Player {
   // UI
   hasCss(css) {
     return browser.wait(() => {
-      return browser.isElementPresent(by.css(css));
+      return element(by.css(css)).isPresent();
+    }, timeout);
+  }
+
+  waitScript(script) {
+    return browser.wait(() => {
+      return browser.executeScript(script);
     }, timeout);
   }
 
   clickElement(css) {
-    browser.findElement(by.css(css)).click();
+    element(by.css(css)).click();
   }
 
   isPlaying() {
-    browser.executeScript(`player.one('timeupdate', function(){
-      playerStatus.classList.add('isPlaying');
-    });`);
+    browser.executeScript(`
+      timeupdate = 0;
+      player.one('timeupdate', function() {
+        timeupdate = 1;
+        //playerStatus.classList.add('isPlaying');
+      });
+      isPlaying = function() {
+        return timeupdate > 0 &&
+          !player.paused() &&
+          !player.ended() &&
+          player.error() === null;
+      };
+    `);
 
-    if (this.hasCss('.isPlaying')) {
-      browser.executeScript(`playerStatus.classList.remove('isPlaying');`);
-      return this.hasCss('.vjs-playing') && browser.executeScript(`return !player.paused() && !player.ended() && player.error() === null;`);
-    }
-
-    return false;
-  }
-
-  isPaused() {
-    return this.hasCss('.vjs-paused');
+    return this.waitScript(`return isPlaying();`);
   }
 
   isFullscreen() {
@@ -75,20 +81,25 @@ export class Player {
   }
 
   adIsPlaying() {
-    return this.hasCss('.vjs-ad-playing') && browser.executeScript(`return !player.ima3.adPlayer.paused();`);
+    return this.hasCss('.vjs-ad-playing') &&
+      browser.executeScript(`return !player.ima3.adPlayer.paused();`);
   }
 
   // API
-  setCurrentTime(time) {
-    browser.executeScript(`player.currentTime(arguments[0]);`, time);
-  }
+  currentTime(time) {
+    if (time === undefined) {
+      return browser.executeScript(`return player.currentTime();`);
+    }
 
-  getCurrentTime() {
-    return browser.executeScript(`return player.currentTime();`);
+    browser.executeScript(`player.currentTime(${time});`);
   }
 
   play() {
     browser.executeScript(`player.play();`);
+  }
+
+  paused() {
+    return browser.executeScript(`return player.paused();`);
   }
 
   error() {
