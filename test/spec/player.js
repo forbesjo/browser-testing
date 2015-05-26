@@ -1,15 +1,16 @@
-const timeout = 1000;
+import util from 'util';
+const timeout = 5000;
 
 export class Player {
   constructor(url) {
     browser.get(url);
     browser.executeScript(`
-      playerStatus = document.createElement('div');
       player = videojs(document.querySelectorAll('.video-js')[0]);
-      playerStatus.id = 'player-status';
-      document.body.appendChild(playerStatus);
+      ready = false;
       player.ready(function() {
-        playerStatus.classList.add('ready');
+        ready = true;
+        // Disable control bar autohide
+        player.options().inactivityTimeout = 0;
       });
     `);
 
@@ -17,21 +18,16 @@ export class Player {
       jasmine.getEnv().bailFast();
     }
 
-    // Disable control bar autohide
-    browser.executeScript(`player.options().inactivityTimeout = 0;`);
+    browser.sleep(1000);
   }
 
   // UI
   hasCss(css) {
-    return browser.wait(() => {
-      return element(by.css(css)).isPresent();
-    }, timeout);
+    return browser.wait(element(by.css(css)).isPresent, timeout, `Element by '${css}' could not be found`);
   }
 
   waitScript(script) {
-    return browser.wait(() => {
-      return browser.executeScript(script);
-    }, timeout);
+    return browser.wait(() => browser.executeScript(script), timeout, `Script '${script}' did not return true`);
   }
 
   clickElement(css) {
@@ -40,13 +36,12 @@ export class Player {
 
   isPlaying() {
     browser.executeScript(`
-      timeupdate = 0;
+      timeupdated = false;
       player.one('timeupdate', function() {
-        timeupdate = 1;
-        //playerStatus.classList.add('isPlaying');
+        timeupdated = true;
       });
       isPlaying = function() {
-        return timeupdate > 0 &&
+        return timeupdated &&
           !player.paused() &&
           !player.ended() &&
           player.error() === null;
@@ -57,15 +52,16 @@ export class Player {
   }
 
   isFullscreen() {
-    browser.executeScript(`player.one('fullscreenchange', function(){
-      playerStatus.classList.add('isFullscreen');
-    });`);
+    browser.executeScript(`
+      fullscreenchanged = false;
+      player.one('fullscreenchange', function(){
+        fullscreenchanged = true;
+      });
+    `);
 
-    if (this.hasCss('.isFullscreen')) {
-      browser.executeScript(`playerStatus.classList.remove('isFullscreen');`);
-      return this.hasCss('.vjs-fullscreen');
-    }
-    return false;
+    return this.waitScript(`
+      return fullscreenchanged && player.isFullscreen();
+    `);
   }
 
   clickBigPlayButton() {
@@ -85,6 +81,19 @@ export class Player {
       browser.executeScript(`return !player.ima3.adPlayer.paused();`);
   }
 
+  consoleLog() {
+    let filteredLogs = [];
+    // Skip errors about missing favicon
+    browser.manage().logs().get('browser').then(logs => {
+      filteredLogs = logs.filter(log => !/favicon/.test(log.message));
+      if (filteredLogs.length > 0) {
+        console.log(`Console log: ${util.inspect(filteredLogs)}`);
+      }
+    });
+
+    return filteredLogs;
+  }
+
   // API
   currentTime(time) {
     if (time === undefined) {
@@ -98,8 +107,20 @@ export class Player {
     browser.executeScript(`player.play();`);
   }
 
+  pause() {
+    browser.executeScript(`player.pause();`);
+  }
+
   paused() {
     return browser.executeScript(`return player.paused();`);
+  }
+
+  ended() {
+    return browser.executeScript(`return player.ended();`);
+  }
+
+  duration() {
+    return browser.executeScript(`return player.duration();`);
   }
 
   error() {
