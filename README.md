@@ -2,6 +2,8 @@
 # Automated Browser Testing
 [![Build Status](https://travis-ci.org/forbesjo/browser-testing.svg?branch=master)](https://travis-ci.org/forbesjo/browser-testing)
 
+[![Codeship Status for forbesjo/browser-testing](https://codeship.com/projects/b997b280-e798-0132-5497-0691ce432f43/status?branch=master)](https://codeship.com/projects/82576)
+
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/forbesjo-vjs.svg)](https://saucelabs.com/u/forbesjo-vjs)
 
 ## Overview
