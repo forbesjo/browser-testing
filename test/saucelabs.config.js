@@ -24,7 +24,6 @@ var browsers = [{
   platform: 'OSX 10.10'
 }, {
   browserName: 'chrome',
-  version: '40',
   platform: 'OSX 10.10'
 }, {
 //   browserName: 'safari',
@@ -54,7 +53,6 @@ var browsers = [{
   }
 }, {
   browserName: 'firefox',
-  version: '34',
   platform: 'OSX 10.10',
   loggingPrefs: {
     browser: 'SEVERE'
