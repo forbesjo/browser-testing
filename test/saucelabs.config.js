@@ -74,17 +74,5 @@ exports.config = {
 
   multiCapabilities: browsers,
 
-  maxDuration: 300,
-
-  framework: 'jasmine2',
-
-  onPrepare: function() {
-    require('jasmine-bail-fast');
-    browser.ignoreSynchronization = true;
-  },
-
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 60000
-  }
+  maxDuration: 300
 };

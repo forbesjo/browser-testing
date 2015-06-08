@@ -1,6 +1,4 @@
 var browsersConfig = {
-  maxSessions: 1,
-
   multiCapabilities: [{
     browserName: 'chrome',
     chromeOptions: {
@@ -27,19 +25,7 @@ var browsersConfig = {
     }
   }].filter(function(cap) {
     return process.env.BROWSER ? cap.browserName === process.env.BROWSER : true;
-  }),
-
-  framework: 'jasmine2',
-
-  onPrepare: function() {
-    require('jasmine-bail-fast');
-    browser.ignoreSynchronization = true;
-  },
-
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 60000
-  }
+  })
 };
 
 if (process.env.WEBDRIVER_SERVER) {

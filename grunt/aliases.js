@@ -17,7 +17,9 @@ module.exports = function(grunt) {
     'appium': function() {
       var appiumPath = require.resolve('appium'),
         done = this.async(),
-        child = exec('node ' + appiumPath, { async: false });
+        child = exec('node ' + appiumPath, {
+          async: false
+        });
 
       process.on('exit', function(data) {
         exec('kill ' + child.pid);
@@ -76,11 +78,7 @@ module.exports = function(grunt) {
 
     'remote': ['test-setup', 'protractor:browsers'],
 
-    'local': [
-      'test-setup',
-      'local-browsers'
-      // , 'local-devices'
-    ],
+    'local': ['test-setup', 'local-browsers'],
 
     'test-picker': (process.env.SAUCE_USERNAME && 'sauce') || (process.env.WEBDRIVER_SERVER && 'remote') || 'local',
 

@@ -3,7 +3,14 @@ module.exports = function(grunt) {
     options: {
       args: {
         baseUrl: 'http://<%= page_hostname %>:' + (grunt.option('port') || 8080) + '/',
-        specs: ['dist/specs.js']
+        specs: ['dist/specs.js'],
+        jasmineNodeOpts: {
+          showColors: true,
+          // Time(ms) it takes for a single 'it' test to complete
+          defaultTimeoutInterval: 60000
+        },
+        onPrepare: 'test/on-prepare.js',
+        framework: 'jasmine2'
       }
     },
     browsers: {

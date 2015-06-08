@@ -4,126 +4,115 @@ const timeout = 5000;
 export class Player {
   constructor(url) {
     browser.get(url);
-    browser.executeScript(`
+    browser.executeAsyncScript(done => {
       player = videojs(document.querySelectorAll('.video-js')[0]);
-      ready = false;
-      player.ready(function() {
-        ready = true;
+      player.ready(() => {
         // Disable control bar autohide
         player.options().inactivityTimeout = 0;
+        done();
       });
-    `);
+    });
 
-    if (!element(by.css('.video-js')).isPresent()) {
+    if (!$('.video-js').isPresent()) {
       jasmine.getEnv().bailFast();
     }
-
-    browser.sleep(1000);
   }
 
-  // UI
+  bigPlayButton() {
+    return $('.vjs-big-play-button');
+  }
+
+  playControl() {
+    return $('.vjs-play-control');
+  }
+
+  fullscreen() {
+    return $('.vjs-fullscreen-control');
+  }
+
   hasCss(css) {
-    return browser.wait(element(by.css(css)).isPresent, timeout, `Element by '${css}' could not be found`);
-  }
-
-  waitScript(script) {
-    return browser.wait(() => browser.executeScript(script), timeout, `Script '${script}' did not return true`);
-  }
-
-  clickElement(css) {
-    element(by.css(css)).click();
+    return browser.wait($(css).isPresent, timeout, `Element by '${css}' could not be found`)
+      .then(res => true, err => false);
   }
 
   isPlaying() {
-    browser.executeScript(`
-      timeupdated = false;
-      player.one('timeupdate', function() {
-        timeupdated = true;
-      });
-      isPlaying = function() {
-        return timeupdated &&
-          !player.paused() &&
+    return browser.executeAsyncScript(done => {
+      player.one('timeupdate', () => {
+        let result = !player.paused() &&
           !player.ended() &&
           player.error() === null;
-      };
-    `);
-
-    return this.waitScript(`return isPlaying();`);
+        done(result);
+      });
+    }).then(res => res, err => false);
   }
 
   isFullscreen() {
-    browser.executeScript(`
-      fullscreenchanged = false;
-      player.one('fullscreenchange', function(){
-        fullscreenchanged = true;
+    return browser.executeAsyncScript(done => {
+      player.one('fullscreenchange', () => {
+        done(player.isFullscreen());
       });
-    `);
-
-    return this.waitScript(`
-      return fullscreenchanged && player.isFullscreen();
-    `);
-  }
-
-  clickBigPlayButton() {
-    this.clickElement('.vjs-big-play-button');
-  }
-
-  clickPlayControl() {
-    this.clickElement('.vjs-play-control');
-  }
-
-  clickFullscreen() {
-    this.clickElement('.vjs-fullscreen-control');
+    }).then(res => res, err => false);
   }
 
   adIsPlaying() {
     return this.hasCss('.vjs-ad-playing') &&
-      browser.executeScript(`return !player.ima3.adPlayer.paused();`);
+      browser.executeScript(() => !player.ima3.adPlayer.paused());
   }
 
   consoleLog() {
-    let filteredLogs = [];
     // Skip errors about missing favicon
-    browser.manage().logs().get('browser').then(logs => {
+    return browser.manage().logs().get('browser').then(logs => {
+      let filteredLogs = [];
+
       filteredLogs = logs.filter(log => !/favicon/.test(log.message));
       if (filteredLogs.length > 0) {
         console.log(`Console log: ${util.inspect(filteredLogs)}`);
       }
-    });
 
-    return filteredLogs;
+      return filteredLogs;
+    });
   }
 
-  // API
   currentTime(time) {
     if (time === undefined) {
-      return browser.executeScript(`return player.currentTime();`);
+      return browser.executeScript(() => player.currentTime());
     }
 
-    browser.executeScript(`player.currentTime(${time});`);
+    return browser.executeScript(t => {
+      player.currentTime(t);
+      return player.currentTime();
+    }, time);
   }
 
   play() {
-    browser.executeScript(`player.play();`);
+    return browser.executeScript(() => {
+      player.play();
+    });
   }
 
   pause() {
-    browser.executeScript(`player.pause();`);
+    return browser.executeScript(() => {
+      player.pause();
+    });
   }
 
   paused() {
-    return browser.executeScript(`return player.paused();`);
+    return browser.executeScript(() => player.paused());
   }
 
   ended() {
-    return browser.executeScript(`return player.ended();`);
+    return browser.executeAsyncScript(done => {
+      player.one('ended', () => {
+        done(player.ended());
+      });
+    }).then(res => res, err => false);
   }
 
   duration() {
-    return browser.executeScript(`return player.duration();`);
+    return browser.executeScript(() => player.duration());
   }
 
   error() {
-    return browser.executeScript(`return player.error();`);
+    return browser.executeScript(() => player.error());
   }
 }

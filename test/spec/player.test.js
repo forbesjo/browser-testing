@@ -3,22 +3,19 @@ import { Player } from './player';
 
 describe('Player', () => {
   const playerUrl = url.resolve(browser.baseUrl, 'test/page/player.html');
-  let player, browserName;
+  let player;
 
   beforeEach(() => {
     player = new Player(playerUrl);
-
-    browser.getCapabilities().then(caps => {
-      browserName = caps.caps_.browserName;
-    });
   });
 
   it('should have no console errors', () => {
     // cannot get logs with iedriver
-    if (!/explorer/i.test(browserName)) {
-      player.clickBigPlayButton();
-      browser.sleep(1000);
-      expect(player.consoleLog().length).toBe(0);
+    if (!/explorer/i.test(browser.browserName)) {
+      player.bigPlayButton().click();
+      player.consoleLog().then(logs => {
+        expect(logs.length).toBe(0);
+      });
     }
   });
 
@@ -27,54 +24,46 @@ describe('Player', () => {
   });
 
   it('should play', () => {
-    player.clickBigPlayButton();
+    player.bigPlayButton().click();
     expect(player.isPlaying()).toBe(true);
   });
 
   it('should set current time', () => {
-    player.clickBigPlayButton();
-    player.pause();
-    browser.sleep(1500);
-
-    player.currentTime(3);
-    expect(player.currentTime()).toBe(3);
+    player.bigPlayButton().click();
+    player.playControl().click();
+    expect(player.currentTime(3)).toBeCloseTo(3, 0);
   });
 
   it('should seek (forwards and backwards)', () => {
-    player.clickBigPlayButton();
-    player.pause();
-    browser.sleep(1500);
-
-    player.currentTime(3);
-    browser.sleep(500);
-    expect(player.currentTime()).toBe(3);
-
-    player.currentTime(2);
-    browser.sleep(500);
-    expect(player.currentTime()).toBe(2);
+    player.bigPlayButton().click();
+    player.playControl().click();
+    expect(player.currentTime(4)).toBeCloseTo(4, 0);
+    expect(player.currentTime(2)).toBeCloseTo(2, 0);
   });
 
   it('should progress', () => {
-    player.clickBigPlayButton();
-    browser.sleep(500);
+    player.bigPlayButton().click();
     var time1 = player.currentTime();
-    browser.sleep(500);
+    browser.executeAsyncScript(done => {
+      player.on('timeupdate', () => {
+        if (player.currentTime() >= 1) done();
+      });
+    });
     var time2 = player.currentTime();
     expect(time1).toBeLessThan(time2);
   });
 
   it('should pause and resume', () => {
-    player.clickBigPlayButton();
+    player.bigPlayButton().click();
     expect(player.isPlaying()).toBe(true);
-
-    player.clickPlayControl();
+    player.playControl().click();
     expect(player.paused()).toBe(true);
 
     // reset to beginning, the video may have finished
     // at the last isPlaying()
     player.currentTime(0);
 
-    player.clickPlayControl();
+    player.playControl().click();
     expect(player.isPlaying()).toBe(true);
   });
 });
