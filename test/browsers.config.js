@@ -7,6 +7,18 @@ if (process.env.TRAVIS) {
       browser: 'SEVERE'
     }
   };
+} else if (process.env.CODESHIP) {
+  config.multiCapabilities = [{
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['no-sandbox']
+    }
+  }, {
+    browserName: 'firefox',
+    loggingPrefs: {
+      browser: 'SEVERE'
+    }
+  }];
 } else {
   config.multiCapabilities = [{
     browserName: 'chrome',

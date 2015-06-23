@@ -80,11 +80,11 @@ module.exports = function(grunt) {
 
     'local': ['test-setup', 'local-browsers'],
 
-    'travis': ['test-setup', 'updateWebDriver', 'protractor:browsers'],
+    'test-on-ci': ['test-setup', 'updateWebDriver', 'protractor:browsers'],
 
-    'test-picker': (process.env.TRAVIS && 'travis' && 'sauce') || (process.env.WEBDRIVER_SERVER && 'remote') || 'local',
+    'test-picker': (process.env.TRAVIS && 'test-on-ci' && 'sauce') || (process.env.WEBDRIVER_SERVER && 'remote') || 'local',
 
-    'test': process.env.TRAVIS_PULL_REQUEST === 'false' ? 'test-picker' : 'jshint',
+    'test': process.env.TRAVIS_PULL_REQUEST === 'false' ? 'test-picker' : (process.env.CODESHIP ? 'test-on-ci' : 'jshint'),
 
     'default': 'test'
   };
