@@ -1,12 +1,17 @@
 var config = {};
 
 if (process.env.TRAVIS) {
-  config.capabilities = {
+  config.multiCapabilities = [{
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['no-sandbox']
+    }
+  }, {
     browserName: 'firefox',
     loggingPrefs: {
       browser: 'SEVERE'
     }
-  };
+  }];
 } else {
   config.multiCapabilities = [{
     browserName: 'chrome',
