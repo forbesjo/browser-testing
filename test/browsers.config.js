@@ -1,5 +1,14 @@
-var browsersConfig = {
-  multiCapabilities: [{
+var config = {};
+
+if (process.env.TRAVIS) {
+  config.capabilities = {
+    browserName: 'firefox',
+    loggingPrefs: {
+      browser: 'SEVERE'
+    }
+  };
+} else {
+  config.multiCapabilities = [{
     browserName: 'chrome',
     chromeOptions: {
       // http://peter.sh/experiments/chromium-command-line-switches/
@@ -25,11 +34,11 @@ var browsersConfig = {
     }
   }].filter(function(cap) {
     return process.env.BROWSER ? cap.browserName === process.env.BROWSER : true;
-  })
-};
-
-if (process.env.WEBDRIVER_SERVER) {
-  browsersConfig.seleniumAddress = 'http://' + process.env.WEBDRIVER_SERVER + ':4444/wd/hub';
+  });
 }
 
-exports.config = browsersConfig;
+if (process.env.WEBDRIVER_SERVER) {
+  config.seleniumAddress = 'http://' + process.env.WEBDRIVER_SERVER + ':4444/wd/hub';
+}
+
+exports.config = config;
