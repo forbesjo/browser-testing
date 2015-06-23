@@ -1,12 +1,12 @@
 var browsers = [{
-  browserName: 'internet explorer',
-  platform: 'Windows 7',
-  version: '8'
-}, {
-  browserName: 'internet explorer',
-  platform: 'Windows 7',
-  version: '9'
-}, {
+//   browserName: 'internet explorer',
+//   platform: 'Windows 7',
+//   version: '8'
+// }, {
+//   browserName: 'internet explorer',
+//   platform: 'Windows 7',
+//   version: '9'
+// }, {
   browserName: 'internet explorer',
   platform: 'Windows 7',
   version: '10'
@@ -22,18 +22,18 @@ var browsers = [{
   browserName: 'chrome',
   platform: 'Windows 8.1'
 }, {
-  browserName: 'safari',
-  version: '6',
-  platform: 'OSX 10.8'
-}, {
-  browserName: 'safari',
-  version: '7',
-  platform: 'OSX 10.9'
-}, {
-  browserName: 'safari',
-  version: '8',
-  platform: 'OSX 10.10'
-}, {
+//   browserName: 'safari',
+//   version: '6',
+//   platform: 'OSX 10.8'
+// }, {
+//   browserName: 'safari',
+//   version: '7',
+//   platform: 'OSX 10.9'
+// }, {
+//   browserName: 'safari',
+//   version: '8',
+//   platform: 'OSX 10.10'
+// }, {
   browserName: 'firefox',
   version: '36',
   platform: 'Windows 8.1',
