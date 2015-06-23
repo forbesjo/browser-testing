@@ -82,7 +82,7 @@ module.exports = function(grunt) {
 
     'travis': ['test-setup', 'updateWebDriver', 'protractor:browsers'],
 
-    'test-picker': (process.env.TRAVIS && 'travis') || (process.env.WEBDRIVER_SERVER && 'remote') || 'local',
+    'test-picker': (process.env.TRAVIS && 'travis' && 'sauce') || (process.env.WEBDRIVER_SERVER && 'remote') || 'local',
 
     'test': process.env.TRAVIS_PULL_REQUEST === 'false' ? 'test-picker' : 'jshint',
 

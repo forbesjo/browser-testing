@@ -1,19 +1,15 @@
 var browsers = [{
-//   browserName: 'internet explorer',
-//   platform: 'Windows 7',
-//   version: '8'
-// }, {
-//   browserName: 'internet explorer',
-//   platform: 'Windows 7',
-//   version: '9'
-// }, {
-//   browserName: 'internet explorer',
-//   platform: 'Windows 7',
-//   version: '10'
-// }, {
   browserName: 'internet explorer',
   platform: 'Windows 7',
-  version: '11'
+  version: '8'
+}, {
+  browserName: 'internet explorer',
+  platform: 'Windows 7',
+  version: '9'
+}, {
+  browserName: 'internet explorer',
+  platform: 'Windows 7',
+  version: '10'
 }, {
   browserName: 'internet explorer',
   platform: 'Windows 8.1',
@@ -21,39 +17,39 @@ var browsers = [{
 }, {
   browserName: 'chrome',
   version: '41',
-  platform: 'OSX 10.10'
+  platform: 'Windows 8.1'
 }, {
   browserName: 'chrome',
+  platform: 'Windows 8.1'
+}, {
+  browserName: 'safari',
+  version: '6',
+  platform: 'OSX 10.8'
+}, {
+  browserName: 'safari',
+  version: '7',
+  platform: 'OSX 10.9'
+}, {
+  browserName: 'safari',
+  version: '8',
   platform: 'OSX 10.10'
 }, {
-//   browserName: 'safari',
-//   version: '6',
-//   platform: 'OSX 10.8'
-// }, {
-//   browserName: 'safari',
-//   version: '7',
-//   platform: 'OSX 10.9'
-// }, {
-//   browserName: 'safari',
-//   version: '8',
-//   platform: 'OSX 10.10'
-// }, {
   browserName: 'firefox',
   version: '36',
-  platform: 'OSX 10.10',
+  platform: 'Windows 8.1',
   loggingPrefs: {
     browser: 'SEVERE'
   }
 }, {
   browserName: 'firefox',
   version: '35',
-  platform: 'OSX 10.10',
+  platform: 'Windows 8.1',
   loggingPrefs: {
     browser: 'SEVERE'
   }
 }, {
   browserName: 'firefox',
-  platform: 'OSX 10.10',
+  platform: 'Windows 8.1',
   loggingPrefs: {
     browser: 'SEVERE'
   }
