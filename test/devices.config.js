@@ -1,4 +1,13 @@
 // TODO: get some devices to keep on the automation machine
+var netInterfaces = require('os').networkInterfaces(),
+  externalIps = Object.keys(netInterfaces)
+  .reduce(function(result, iface) {
+    return result.concat(netInterfaces[iface]);
+  }, [])
+  .filter(function(iface) {
+    return iface.family === 'IPv4' && !iface.internal;
+  }),
+  externalIp = externalIps[externalIps.length - 1].address;
 
 var iosDevices = [
 
@@ -91,6 +100,9 @@ exports.config = {
   seleniumAddress: 'http://' + (process.env.WEBDRIVER_SERVER || 'localhost') + ':4723/wd/hub',
 
   multiCapabilities: devices,
+
+  baseUrl: 'http://' + externalIp + ':9999/',
+  specs: ['../dist/specs.js'],
 
   onPrepare: function() {
     var wd = require('wd'),

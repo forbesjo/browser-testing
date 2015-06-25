@@ -2,16 +2,17 @@
   "name": "browser-testing",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "proxyDevice": "./node_modules/appium/bin/ios-webkit-debug-proxy-launcher.js -c 79431df8dc364454f4850ceacb447797bc313574:27753",
+    "setup-appium": "appium-doctor && grunt copy && appium && proxyDevice && adb devices"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "appium": "^1.3.6",
     "babelify": "^6.0.2",
     "grunt": "^0.4.5",
@@ -20,14 +21,7 @@
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-protractor-runner": "^2.0.0",
-    "grunt-sauce-connect-launcher": "git+https://github.com/forbesjo/grunt-sauce-connect-launcher.git#update",
-    "jasmine-bail-fast": "0.0.1",
-    "load-grunt-config": "^0.16.0",
-    "load-grunt-tasks": "^3.1.0",
-    "protractor": "^2.0.0",
-    "shelljs": "^0.4.0",
-    "time-grunt": "^1.1.0",
+    "grunt-protractor-runner": "git+https://github.com/forbesjo/grunt-protractor-runner.git#update-webdriver",
     "video.js": "^4.12.5",
     "wd": "^0.3.11",
     "wd-bridge": "0.0.2"

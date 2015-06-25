@@ -12,10 +12,6 @@ export class Player {
         done();
       });
     });
-
-    if (!$('.video-js').isPresent()) {
-      jasmine.getEnv().bailFast();
-    }
   }
 
   bigPlayButton() {
