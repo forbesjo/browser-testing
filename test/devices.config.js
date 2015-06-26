@@ -102,7 +102,7 @@ exports.config = {
   multiCapabilities: devices,
 
   baseUrl: 'http://' + externalIp + ':9999/',
-  specs: ['../dist/specs.js'],
+  specs: ['spec/player.test.js'],
 
   onPrepare: function() {
     var wd = require('wd'),

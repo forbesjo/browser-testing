@@ -99,7 +99,7 @@ if (process.env.SAUCE_USERNAME) {
   };
 }
 
-config.specs = ['../dist/specs.js'];
+config.specs = ['spec/player.test.js'];
 
 config.framework = 'jasmine2';
 config.jasmineNodeOpts = {

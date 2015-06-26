@@ -8,19 +8,16 @@
   "scripts": {
     "test": "grunt test",
     "proxyDevice": "./node_modules/appium/bin/ios-webkit-debug-proxy-launcher.js -c 79431df8dc364454f4850ceacb447797bc313574:27753",
-    "setup-appium": "appium-doctor && grunt copy && appium && proxyDevice && adb devices"
+    "setup-appium": "appium-doctor && grunt copy && (appium &) && (npm run proxyDevice &) && adb devices"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "appium": "^1.3.6",
-    "babelify": "^6.0.2",
     "grunt": "^0.4.5",
-    "grunt-browserify": "^3.6.0",
     "grunt-contrib-connect": "^0.10.1",
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-jshint": "^0.11.0",
-    "grunt-contrib-watch": "^0.6.1",
     "grunt-protractor-runner": "git+https://github.com/forbesjo/grunt-protractor-runner.git#update-webdriver",
     "video.js": "^4.12.5",
     "wd": "^0.3.11",
