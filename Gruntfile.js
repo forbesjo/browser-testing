@@ -4,7 +4,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     protractor: {
       options: {
-        configFile: 'test/protractor.config.js'
+        configFile: 'test/protractor.config.js',
+        webdriverManagerUpdate: true
       },
       test: {},
       devices: {
