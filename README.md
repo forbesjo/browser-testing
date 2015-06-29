@@ -1,5 +1,5 @@
 # Video.js Webdriver Tests
-[![Build Status](https://travis-ci.org/forbesjo/browser-testing.svg?branch=master)](https://travis-ci.org/forbesjo/browser-testing)
+[![Build Status](https://travis-ci.org/forbesjo/videojs-test.svg?branch=master)](https://travis-ci.org/forbesjo/videojs-test)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/forbesjo-vjs.svg)](https://saucelabs.com/u/forbesjo-vjs)
 
