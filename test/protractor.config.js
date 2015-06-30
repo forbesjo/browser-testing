@@ -33,10 +33,6 @@ if (process.env.SAUCE_USERNAME) {
     version: '11'
   }, {
     browserName: 'chrome',
-    version: '41',
-    platform: 'Windows 8.1'
-  }, {
-    browserName: 'chrome',
     platform: 'Windows 8.1'
   }, {
     //   browserName: 'safari',
@@ -51,20 +47,6 @@ if (process.env.SAUCE_USERNAME) {
     //   version: '8',
     //   platform: 'OSX 10.10'
     // }, {
-    browserName: 'firefox',
-    version: '36',
-    platform: 'Windows 8.1',
-    loggingPrefs: {
-      browser: 'SEVERE'
-    }
-  }, {
-    browserName: 'firefox',
-    version: '35',
-    platform: 'Windows 8.1',
-    loggingPrefs: {
-      browser: 'SEVERE'
-    }
-  }, {
     browserName: 'firefox',
     platform: 'Windows 8.1',
     loggingPrefs: {
