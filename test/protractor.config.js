@@ -1,13 +1,4 @@
-var netInterfaces = require('os').networkInterfaces(),
-  externalIps = Object.keys(netInterfaces)
-  .reduce(function(result, iface) {
-    return result.concat(netInterfaces[iface]);
-  }, [])
-  .filter(function(iface) {
-    return iface.family === 'IPv4' && !iface.internal;
-  }),
-  externalIp = externalIps[externalIps.length - 1].address,
-  config = {};
+var config = {};
 
 if (process.env.SAUCE_USERNAME) {
   config.sauceUser = process.env.SAUCE_USERNAME;
@@ -48,7 +39,7 @@ if (process.env.SAUCE_USERNAME) {
     //   platform: 'OSX 10.10'
     // }, {
     browserName: 'firefox',
-    platform: 'Windows 8.1',
+    platform: 'Linux',
     loggingPrefs: {
       browser: 'SEVERE'
     }
@@ -100,6 +91,6 @@ config.onPrepare = function() {
   });
 };
 
-config.baseUrl = 'http://' + externalIp + ':9999/';
+config.baseUrl = 'http://127.0.0.1:9999/';
 
 exports.config = config;
